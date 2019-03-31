@@ -1,0 +1,148 @@
+@primary: cadetblue;
+@accent: wheat;
+
+/**************  GLOBALS ************/
+* {
+	margin:0;
+	padding:0;
+}
+
+html, body, #react-root, .render-target {
+	background-color: cadetblue;
+	height: 100%;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+.fullHeight {
+	height: 100%;
+}
+
+.margin-left{
+	margin-left: 10px!important;
+}
+
+.margin-right{
+	margin-right: 10px!important;
+}
+
+.loading{
+	position: fixed;
+	transform: translate(-50%,-50%);
+	left: 50%;
+	top: 50%;
+}
+
+.generated{
+	background-image: -webkit-linear-gradient(92deg, #ff2929, #ffffff);
+	-webkit-animation: hue 60s infinite linear;
+}
+
+@-webkit-keyframes hue {
+	from {
+		-webkit-filter: hue-rotate(0deg);
+	}
+
+	to {
+		-webkit-filter: hue-rotate(-360deg);
+	}
+}
+
+.card{
+	width: 90% !important;
+  margin-left: 5% !important;
+	border-width: medium!important;
+
+	.cardHeader {
+		color: @primary!important;
+		background-color: @accent!important;
+	}
+}
+
+/************************* NAVBAR *******************************************/
+.navContainer {
+  a {
+		color: @primary!important;
+  }
+
+	div div div {
+		color: @primary!important;
+		div span{
+			color: @primary!important;
+	  }
+  }
+}
+
+.newPost{
+	width: 90%;
+	margin: auto;
+	padding-bottom: 1em;
+	display: flex;
+	flex-direction: column!important;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+
+	.newPostHeader{
+		color: @primary!important;
+		background-color: @accent!important;
+    width: 100%;
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+  }
+
+	.newPostContent {
+		width: 100%;
+		background-color: white!important;
+		padding: 1em;
+		display: flex!important;
+		flex-direction: column!important;
+		align-items: center;
+		max-height: none!important;
+
+		.each {
+			width: 100%!important;
+			margin-top: 1em;
+		}
+	}
+}
+
+/************************  TASK LIST *********************************************/
+
+.postFrame{
+	width: 96%!important;
+	margin: 1em auto 1em auto!important;
+
+	.postFrameHeader {
+		color: @primary!important;
+		background-color: @accent!important;
+  }
+}
+
+
+/******************** AUTH *********************/
+.login{
+	width: 50%!important;
+	margin: auto!important;
+}
+
+.loginContainer{
+	padding-top: 1em!important;
+	height: 100% !important;
+}
+
+.logo  {
+	max-width: 16em;
+	margin: auto!important;
+	margin-bottom: 1em!important;
+}
+
+/* games */
+
+.gamesListHeader{
+	width: 100%;
+}
