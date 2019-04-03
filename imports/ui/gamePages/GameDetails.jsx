@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Image, Header, Label, Card, Button } from 'semantic-ui-react';
-import Loading from './Loading.jsx';
-var gravatar = require('gravatar');
+import { Dimmer, Loader, Image, Header, Label, Card, Button } from 'semantic-ui-react';
 
 class GameDetails extends Component {
   constructor(props) {
@@ -19,7 +17,9 @@ class GameDetails extends Component {
       );
     } else {
       return(
-        <Loading/>
+        <Dimmer active inverted>
+          <Loader inverted>Yükleniyor</Loader>
+        </Dimmer>
       );
     }
   }
@@ -73,7 +73,9 @@ class GameDetails extends Component {
       );
     } else {
       return (
-        <Loading/>
+        <Dimmer active inverted>
+          <Loader inverted>Yükleniyor</Loader>
+        </Dimmer>
       );
     }
   }

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Header, Label, Card, Button } from 'semantic-ui-react';
-import Loading from './Loading.jsx';
+import { Header, Label, Card, Button, Dimmer, Loader } from 'semantic-ui-react';
 
-class GameLobby extends Component {
+class GameList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.renderGames = this.renderGames.bind(this);
   }
 
   renderHostActions(game){
@@ -18,7 +16,7 @@ class GameLobby extends Component {
     }
   }
 
-  renderGames(){
+  render(){
     if(this.props.games){
       return this.props.games.map((game) => (
         <Card key={game._id} className="postFrame">
@@ -41,39 +39,19 @@ class GameLobby extends Component {
       ));
     } else {
       return(
-        <Loading/>
+        <Dimmer active inverted>
+          <Loader inverted>Yükleniyor</Loader>
+        </Dimmer>
       );
     }
   }
-
-  render() {
-    return (
-      <Card className="profile">
-        <Card.Content header={
-          <div className="profileTop">
-            <Header as='h4'>
-              <Header.Content className="">
-                Oyunlar
-              </Header.Content>
-              <Header.Content className="right floated">
-                <button className="ui right floated primary button" onClick={() => this.props.history.push('/newGame/')}>Yeni Oyun</button>
-              </Header.Content>
-            </Header>
-          </div>
-        }/>
-        <Card.Content description={
-          this.renderGames()
-        }/>
-      </Card>
-    );
-  }
 }
 
-export default GameLobbyContainer = withTracker(props => {
+export default GameListContainer = withTracker(props => {
     Meteor.subscribe('games');
     const games = Games.find().fetch();
   
     return{
       games
     };
-  })(GameLobby);
+  })(GameList);

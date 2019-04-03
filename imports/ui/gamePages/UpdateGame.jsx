@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Button, Input, Form, TextArea } from 'semantic-ui-react';
+import { Button, Input, Form, TextArea, Dimmer, Loader } from 'semantic-ui-react';
 import Noty from 'noty';
-import Loading from './Loading.jsx';
 
 class UpdateGame extends Component {
   constructor(props) {
@@ -132,7 +131,7 @@ class UpdateGame extends Component {
               size="medium"
               color="red"
               content="İptal"
-              onClick={() => this.props.history.push('/gameDetails/' + this.props.game._id, {id: this.props.game._id})}
+              onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}
             />
             <Button
               size="medium"
@@ -145,7 +144,9 @@ class UpdateGame extends Component {
       );
     } else {
       return(
-        <Loading/>
+        <Dimmer active inverted>
+          <Loader inverted>Loading</Loader>
+        </Dimmer>
       );
     }
   }

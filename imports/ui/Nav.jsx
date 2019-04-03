@@ -43,11 +43,11 @@ export default class Nav extends Component {
           </Menu.Item>
         : ""}
         <Menu.Item
-          name='Hakkında'
+          name='Lider Tablosu'
           className="navButton"
-          active={this.props.location.pathname === '/about' ? true : false}
-          onClick={() => this.handleRoute('/about')}>
-            Hakkında
+          active={this.props.location.pathname === '/leaderboard' ? true : false}
+          onClick={() => this.handleRoute('/leaderboard')}>
+            Liderler Tablosu
         </Menu.Item>
         {Meteor.userId() ?
           <Menu.Menu position='right'>
@@ -58,7 +58,7 @@ export default class Nav extends Component {
               </div>
               <div className='results' />
             </Menu.Item>
-            <Dropdown item text='Ayarlar'>
+            <Dropdown item text='Seçenekler'>
               <Dropdown.Menu>
                 <Dropdown.Item text='Profil' onClick={() => this.props.history.push('/profile/' + Meteor.users.findOne(Meteor.userId()).username, {username: Meteor.users.findOne(Meteor.userId()).username})}/>
                 <Dropdown.Item text='Yeni Oyun' onClick={() => this.handleRoute('/newGame')}/>

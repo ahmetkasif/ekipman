@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Image, Header, Label, Icon, Card, Button, Input, Modal, Message, Statistic } from 'semantic-ui-react';
+import { Card, Button, Input } from 'semantic-ui-react';
 import Noty from 'noty';
 
 export default class ForgotPassword extends Component {
@@ -57,29 +56,6 @@ export default class ForgotPassword extends Component {
             <a onClick={() => this.handleRoute('/login')}>Hatırladın mı ?</a>
           </Card.Content>
         </Card>
-        <Modal trigger={<Statistic className='authData' size='mini' value='v0.0.3'/>}>
-          <Modal.Header>Son haberler ve S.S.S</Modal.Header>
-          <Modal.Content image>
-            <Modal.Description>
-              <Message
-                floating
-                info
-                header='Sürüm'
-                list={[
-                  '0.0.5a'
-                ]}
-              />
-              <Message
-                floating
-                success
-                header='Bilgi'
-                list={[
-                  'Makale yazarlığı için lütfen ksfahmet@gmail.com adresinden e-posta yoluyla iletişime geçiniz.',
-                ]}
-              />
-            </Modal.Description>
-          </Modal.Content>
-        </Modal>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Input, Card, Statistic, Modal, Header, Message } from 'semantic-ui-react';
+import { Button, Input, Card } from 'semantic-ui-react';
 import Noty from 'noty';
 
 export default class Login extends Component {

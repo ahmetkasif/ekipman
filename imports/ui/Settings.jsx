@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Image, Header, Label, Icon, Card, Button, Form, Input } from 'semantic-ui-react';
+import { Header, Card, Form } from 'semantic-ui-react';
 
-class Settings extends Component {
+export default class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -45,9 +44,3 @@ class Settings extends Component {
     );
   }
 }
-
-
-export default SettingsContainer = withTracker(props => {
-  return{
-  };
-})(Settings);
