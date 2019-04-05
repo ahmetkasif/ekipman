@@ -18,7 +18,7 @@ if (Meteor.isServer) {
         rules,
         startDate,
         isCustom,
-        state        
+        state
       });
     },
     updateGame: function(id, name, description, rules, startDate){
@@ -33,10 +33,30 @@ if (Meteor.isServer) {
     },
     deleteGame: function(id){
       Games.remove(id);
+    },
+    addPlayer: function(gameID, country){
+      player = {};
+      player.id = Meteor.userId();
+      player.name = Meteor.user().username;
+      player.country = country;
+
+      Games.update({_id: gameID}, {
+        $push: { players: player }
+      });
+    },
+    removePlayer: function(gameID){
+      Games.update({_id: gameID}, {
+        $pull: { players: { id: Meteor.userId() } }
+      });
     }
   });
 
   Meteor.publish('games', function() {
     return Games.find();
+  });
+
+  Meteor.publish('users', function() {
+    let users = Meteor.users.find({}, { fields: { profile:1, username: 1, emails: 1 }});
+    return users;
   });
 }

@@ -129,12 +129,14 @@ class UpdateGame extends Component {
           <div>
             <Button
               size="medium"
+              className="mini"
               color="red"
               content="İptal"
               onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}
             />
             <Button
               size="medium"
+              className="mini"
               color="teal"
               content="Güncelle"
               onClick={() => this.updateGame()}
