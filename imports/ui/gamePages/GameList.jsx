@@ -27,8 +27,8 @@ class GameList extends Component {
   render(){
     if(this.props.games){
       return this.props.games.map((game) => (
-        <Card key={game._id} className="postFrame">
-          <Card.Content className="postFrameHeader" header={
+        <Card key={game._id}>
+          <Card.Content header={
             <Header as='h4' image>
               <Header.Subheader>Oyun İsmi: {game.name}</Header.Subheader>
             </Header>
@@ -36,6 +36,7 @@ class GameList extends Component {
           <Card.Content>
             {this.getHost(game.hostID)}
             Açıklamalar : <Label basic color='green' horizontal>{"Historical"}</Label> <Label basic color='blue' horizontal>{"1444"}</Label>
+            Kayıtlı Oyuncuların Sayısı: 0
           </Card.Content>
           <Card.Content extra>
             <div className='ui'>

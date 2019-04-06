@@ -53,22 +53,32 @@ class GameDetails extends Component {
   }
 
   renderJoinGame(){
-    if(!this.props.joined){
-      return(
-        <Container color='blue'>
-          <Dropdown
-            onChange={() => this.handleChange()}
-            className="mini"
-            button
-            options={options}
-            value={this.state.value}
-          />
-          <Button className="mini" onClick={() => this.joinGame(this.props.game._id)}>Katıl</Button>
-        </Container>
-      );
+    if(this.props.game.state == 0){
+      if(!this.props.joined){
+        return(
+          <Card.Content>
+            <Container color='blue'>
+              <Dropdown
+                onChange={this.handleChange}
+                className="mini"
+                button
+                options={options}
+                value={this.state.value}
+              />
+              <Button className="mini" onClick={() => this.joinGame(this.props.game._id)}>Katıl</Button>
+            </Container>
+          </Card.Content>
+        );
+      } else {
+        return(
+          <Card.Content>
+            <Button className="mini" color='orange' onClick={() => this.joinGame(this.props.game._id)}>Ayrıl</Button>
+          </Card.Content>
+        );
+      }
     } else {
       return(
-        <Button className="mini" color='orange' onClick={() => this.joinGame(this.props.game._id)}>Ayrıl</Button>
+        ""
       );
     }
   }
@@ -76,7 +86,11 @@ class GameDetails extends Component {
   renderHostActions(){
     if(this.props.game.hostID === Meteor.userId()){
       return(
-        <Button className="mini" color='teal' onClick={() => this.props.history.push('/updateGame/' + this.props.game._id, {id: this.props.game._id})}>Düzenle</Button>
+        <Button.Group>
+          <Button attached='bottom' color='teal' disabled>Alımları Kapat</Button>
+          <Button attached='bottom' color='teal' onClick={() => this.props.history.push('/updateGame/' + this.props.game._id, {id: this.props.game._id})}>Düzenle</Button>
+          <Button attached='bottom' color='red' disabled onClick={() => this.props.history.push('/deleteGame/' + this.props.game._id, {id: this.props.game._id})}>Sil</Button>
+        </Button.Group>
       );
     }
   }
@@ -154,7 +168,7 @@ class GameDetails extends Component {
   renderPlayers(){
     if(this.props.game.players){
       return this.props.game.players.map((player) => (
-        <List.Item as='li'key={player.id}>{player.name} : {player.country}</List.Item>
+        <List.Item as='li'key={player.id}><b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a></b> : {player.country}</List.Item>
       ));
     } else {
       return (
@@ -166,12 +180,10 @@ class GameDetails extends Component {
   renderGame(){
     if(this.props.game){
       return (
-        <Card key={this.props.game._id} className="postFrame">
-          <Card.Content className="postFrameHeader" header={
-            <Header as='h4' image>
-              <Header.Subheader>Oyun İsmi: {this.props.game.name}</Header.Subheader>
-            </Header>
-          }/>
+        <Card key={this.props.game._id} attached="true">
+          <Card.Content>
+            <Card.Header>Oyun İsmi: {this.props.game.name}</Card.Header>
+          </Card.Content>
           <Card.Content>
             {this.getHost(this.props.game.hostID)}
             Açıklamalar : <Label basic color='green' horizontal>{"Historical"}</Label> <Label basic color='blue' horizontal>{"1444"}</Label>
@@ -182,23 +194,19 @@ class GameDetails extends Component {
             Kurallar: {this.props.game.rules}<br/>
             {this.renderState()}
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content>
             <Label horizontal as='a' color='green'>1444</Label>
             <Label horizontal as='a' color='red'>Historical</Label>
             <Label horizontal as='a' color='teal'>Peşkeş</Label>
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content>
             <b>Oyuncular:</b>
-            <List as='ol'>
+            <List as='ol' celled>
               {this.renderPlayers()}
             </List>
           </Card.Content>
-          <Card.Content extra>
-            <div className='ui'>
-              {this.renderHostActions()}
-              {this.renderJoinGame()}
-            </div>
-          </Card.Content>
+          {this.renderJoinGame()}
+          {this.renderHostActions()}
         </Card>
       );
     } else {

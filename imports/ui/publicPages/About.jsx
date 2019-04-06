@@ -31,15 +31,17 @@ export default class About extends Component {
                 <List.Item>Oyun ekleyebilme</List.Item>
                 <List.Item>Oyun bilgilerini güncelleyebilme</List.Item>
                 <List.Item>Oyun detaylarını görüntüleyebilme</List.Item>
-                <List.Item>Profil sayfası</List.Item>
                 <List.Item>Kullanıcı şifresini güncelleyebilme</List.Item>
+                <List.Item>Oyunlara kayıt olabilme / oyundan ayrılabilme</List.Item>
+                <List.Item>Oyunlara kayıt olan oyuncuların listelenmesi</List.Item>
               </List.List>
             </List.Item>
             <List.Item>
               Tasarımsal olarak eklenmesi tamamlanmış özellikler
               <List.List>
                 <List.Item>Liderler Tablosu</List.Item>
-                <List.Item>Oyunlara kayıt olan oyuncuların listelenmesi</List.Item>
+                <List.Item>Lobideki açık oyunlardaki mevcut oyuncu sayısı</List.Item>
+                <List.Item>Profil sayfası</List.Item>
               </List.List>
             </List.Item>
           </List>

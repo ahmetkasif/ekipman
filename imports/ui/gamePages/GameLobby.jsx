@@ -10,15 +10,11 @@ export default class GameLobby extends Component {
 
   render() {
     return (
-      <Card className="profile">
+      <Card className="cardSpecial">
         <Card.Content header={
-          <div className="profileTop">
-            <Header as='h4'>
-              <Header.Content className="">
-                Oyunlar
-              </Header.Content>
-            </Header>
-          </div>
+          <Card.Header as='h4'>
+            Oyunlar
+          </Card.Header>
         }/>
         <Card.Content description={
           <GameList history={this.props.history} />
