@@ -16,11 +16,7 @@ export default class Nav extends Component {
     }
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   render() {
-    const { activeItem } = this.state;
-
     return (
       <Menu stackable className="navContainer">
         <Menu.Item className="generated">
@@ -29,7 +25,6 @@ export default class Nav extends Component {
         <Menu.Item
           name='Anasayfa'
           className="navButton"
-          active={this.props.location.pathname === '/' ? true : false}
           onClick={() => this.handleRoute('/')}>
             Anasayfa
         </Menu.Item>
@@ -37,7 +32,6 @@ export default class Nav extends Component {
           <Menu.Item
             name='Oyunlar'
             className="navButton"
-            active={this.props.location.pathname === '/games' ? true : false}
             onClick={() => this.handleRoute('/games')}>
               Oyunlar
           </Menu.Item>
@@ -45,10 +39,25 @@ export default class Nav extends Component {
         <Menu.Item
           name='Lider Tablosu'
           className="navButton"
-          active={this.props.location.pathname === '/leaderboard' ? true : false}
           onClick={() => this.handleRoute('/leaderboard')}>
             Liderler Tablosu
         </Menu.Item>
+        {Meteor.userId() ?
+          <Menu.Item
+            name='Kurallar'
+            className="navButton"
+            onClick={() => this.handleRoute('/rules')}>
+              Oyun Kuralları
+          </Menu.Item>:
+        ''}
+        {Meteor.userId() ?
+          <Menu.Item
+            name='DLC-Mod Linkleri'
+            className="navButton"
+            onClick={() => this.handleRoute('/links')}>
+              DLC-Mod Linkleri
+          </Menu.Item>:
+        ''}
         {Meteor.userId() ?
           <Menu.Menu position='right'>
             <Menu.Item position='right'>

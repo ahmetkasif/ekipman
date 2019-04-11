@@ -40,6 +40,8 @@ export default class About extends Component {
               Tasarımsal olarak eklenmesi tamamlanmış özellikler
               <List.List>
                 <List.Item>Liderler Tablosu</List.Item>
+                <List.Item>Oyun kurallarını görüntüleyebilme</List.Item>
+                <List.Item>Oyun dlc-mod kurulum anlatımlarına erişim</List.Item>
                 <List.Item>Lobideki açık oyunlardaki mevcut oyuncu sayısı</List.Item>
                 <List.Item>Profil sayfası</List.Item>
               </List.List>
@@ -48,7 +50,7 @@ export default class About extends Component {
           <Divider />
           Sorularınız, görüşleriniz ve hata bildirimi için, <b>noreply@tsotapp.com</b> adresine e-posta ile ulaşabilirsiniz.
           <Divider />
-          <b>UYGULAMA GELİŞTİRİLMEKTEDİR. ÇOĞU ÖZELLİK, HENÜZ EKLENMEMİŞTİR. TASARIMSAL DEMO AMAÇLI GÖSTERİME SUNULMUŞTUR.</b>
+          <b>UYGULAMA GELİŞTİRME AŞAMASINDADIR. ÇOĞU ÖZELLİK, HENÜZ TASARIM AŞAMASINDADIR. GELİŞİM SÜRECİNİ HAKKINDA SAYFASINDAN TAKİP EDEBİLİRSİNiZ.</b>
           <Divider />
           <img className="ui medium centered rounded image" src='/logo.png' />
         </Card.Content>
