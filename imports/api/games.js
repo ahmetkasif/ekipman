@@ -59,4 +59,9 @@ if (Meteor.isServer) {
     let users = Meteor.users.find({}, { fields: { profile:1, username: 1, emails: 1 }});
     return users;
   });
+  
+  Meteor.publish('userProfile', function(username) {
+    let user = Meteor.users.find({username: username}, { fields: { profile:1, username: 1, emails: 1 }});
+    return user;
+  });
 }
