@@ -79,8 +79,6 @@ class GameJoin extends Component {
           close: 'noty_effects_close'
         }
       }).show();
-      console.log(this.state.op1 + " " + this.state.op2 + " " + this.state.op3 + " " + this.state.checkbox);
-    
       this.props.history.push('/games/' + gameID, {id: gameID});
   }
 

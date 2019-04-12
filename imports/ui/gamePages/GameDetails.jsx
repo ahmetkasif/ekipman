@@ -56,10 +56,15 @@ class GameDetails extends Component {
 
   getHost(id){
     let user = Meteor.users.findOne({_id: id}, { fields: { username: 1 }});
-    
-    return(
-      <p><b>Sunucu : {user.username}</b></p>
-    ); 
+    if(user){
+      return(
+        <p><b>Sunucu : {user.username}</b></p>
+      ); 
+    } else {
+      return (
+        <Loader/>
+      );
+    }
   }
   
 
