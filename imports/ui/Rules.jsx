@@ -43,13 +43,9 @@ export default class Rules extends Component {
     return (
       <Card className="profile">
         <Card.Content header={
-          <div className="profileTop">
-            <Header as='h4'>
-              <Header.Content>
-                Oyun Kuralları
-              </Header.Content>
-            </Header>
-          </div>
+          <Card.Header as='h4'>
+            Oyun Kuralları
+          </Card.Header>
         }/>
         <Card.Content>
             <Tab panes={panes}/>

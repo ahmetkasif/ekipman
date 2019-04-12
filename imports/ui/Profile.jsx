@@ -11,27 +11,13 @@ class Profile extends Component {
     this.renderProfile = this.renderProfile.bind(this);
   }
 
-  renderAuthorPic(mail){
-    if(mail){
-      return(
-        <Image src={gravatar.url(mail.address)} />
-      );
-    } else {
-      return(
-        <Dimmer active inverted>
-          <Loader inverted>Yükleniyor</Loader>
-        </Dimmer>
-      );
-    }
-  }
-
   renderProfile(){
     if(this.props.user){
       return(
         <Card className="card">
           <Card.Content className="cardHeader" header={
             <Header as='h4' image>
-              <Image src={gravatar.url(this.props.user.emails[0].address)} />
+              <Image avatar src={gravatar.url(this.props.user.emails[0].address)} />
               <Header.Content>
                 {this.props.user.username}
                 <Header.Subheader>{this.props.user.emails[0].address}</Header.Subheader>

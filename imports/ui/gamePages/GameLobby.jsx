@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Card } from 'semantic-ui-react';
+import { Item, Card } from 'semantic-ui-react';
 import GameList from './GameList.jsx';
 
 export default class GameLobby extends Component {
@@ -17,7 +17,9 @@ export default class GameLobby extends Component {
           </Card.Header>
         }/>
         <Card.Content description={
-          <GameList history={this.props.history} />
+          <Item.Group divided>
+            <GameList history={this.props.history} />
+          </Item.Group>
         }/>
       </Card>
     );

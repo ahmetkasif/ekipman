@@ -12,13 +12,9 @@ export default class Links extends Component {
         <Step>
             <Card className="profile">
                 <Card.Content header={
-                <div className="profileTop">
-                    <Header as='h4'>
-                    <Header.Content>
-                    EU4 Orjinal Oyunda DLC Aktivasyonu
-                    </Header.Content>
-                    </Header>
-                </div>
+                    <Card.Header as='h4'>
+                        İndirme Linkleri
+                    </Card.Header>
                 }/>
                 <Card.Content>
                 <List bulleted size={'large'}>

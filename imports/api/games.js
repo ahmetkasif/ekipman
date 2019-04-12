@@ -34,11 +34,14 @@ if (Meteor.isServer) {
     deleteGame: function(id){
       Games.remove(id);
     },
-    addPlayer: function(gameID, country){
+    addPlayer: function(gameID, option1, option2, option3){
       player = {};
       player.id = Meteor.userId();
       player.name = Meteor.user().username;
-      player.country = country;
+      player.email = Meteor.user().emails[0].address
+      player.option1 = option1;
+      player.option2 = option2;
+      player.option3 = option3;
 
       Games.update({_id: gameID}, {
         $push: { players: player }
@@ -53,6 +56,10 @@ if (Meteor.isServer) {
 
   Meteor.publish('games', function() {
     return Games.find();
+  });
+
+  Meteor.publish('game', function(id) {
+    return Games.find({_id: id});
   });
 
   Meteor.publish('users', function() {

@@ -11,13 +11,9 @@ export default class About extends Component {
     return (
       <Card className="profile">
         <Card.Content header={
-          <div className="profileTop">
-            <Header as='h4'>
-              <Header.Content>
-                Hakkında
-              </Header.Content>
-            </Header>
-          </div>
+          <Card.Header as='h4'>
+            Hakkında
+          </Card.Header>
         }/>
         <Card.Content>
           Türk Strateji Oyuncuları Topluluğu (TSOT) resmi web uygulamasıdır.

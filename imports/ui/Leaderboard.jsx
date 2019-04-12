@@ -204,13 +204,9 @@ export default class Leaderboard extends Component {
     return (
       <Card className="profile">
         <Card.Content header={
-          <div className="profileTop">
-            <Header as='h4'>
-              <Header.Content>
-                Liderler Tablosu
-              </Header.Content>
-            </Header>
-          </div>
+          <Card.Header as='h4'>
+            Liderler Tablosu
+          </Card.Header>
         }/>
         <Card.Content>
           <Tab panes={panes}/>

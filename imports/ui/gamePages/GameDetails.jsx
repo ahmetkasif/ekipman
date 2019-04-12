@@ -3,19 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Container, List, Dropdown, Dimmer, Loader, Image, Header, Label, Card, Button } from 'semantic-ui-react';
 import Noty from 'noty';
 
-const options = [
-  { key: 'Ottomans', text: 'Ottomans', value: 'Ottomans' },
-  { key: 'France', text: 'France', value: 'France' },
-  { key: 'Austria', text: 'Austria', value: 'Austria' },
-  { key: 'Castille', text: 'Castille', value: 'Castille' },
-  { key: 'England', text: 'England', value: 'England' },
-  { key: 'Mamluks', text: 'Mamluks', value: 'Mamluks' },
-  { key: 'Muscovy', text: 'Muscovy', value: 'Muscovy' },
-  { key: 'Poland', text: 'Poland', value: 'Poland' },
-  { key: 'Sweden', text: 'Sweden', value: 'Sweden' },
-  { key: 'Portugal', text: 'Portugal', value: 'Portugal' },
-  { key: 'Brandenburg', text: 'Brandenburg', value: 'Brandenburg' },
-]
+var gravatar = require('gravatar');
 
 class GameDetails extends Component {
   constructor(props) {
@@ -23,27 +11,11 @@ class GameDetails extends Component {
     this.state = {
       value: 'Ottomans'
     };
-    this.renderGame = this.renderGame.bind(this);
+    
     this.renderState = this.renderState.bind(this);
     this.renderPlayers = this.renderPlayers.bind(this);
     this.renderJoinGame = this.renderJoinGame.bind(this);
     this.renderHostActions = this.renderHostActions.bind(this);
-    this.joinGame = this.joinGame.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  renderAuthorPic(mail){
-    if(mail){
-      return(
-        <Image src={gravatar.url(mail.address)} />
-      );
-    } else {
-      return(
-        <Dimmer active inverted>
-          <Loader inverted>Yükleniyor</Loader>
-        </Dimmer>
-      );
-    }
   }
 
   handleChange(event, data){
@@ -56,24 +28,11 @@ class GameDetails extends Component {
     if(this.props.game.state == 0){
       if(!this.props.joined){
         return(
-          <Card.Content>
-            <Container color='blue'>
-              <Dropdown
-                onChange={this.handleChange}
-                className="mini"
-                button
-                options={options}
-                value={this.state.value}
-              />
-              <Button className="mini" onClick={() => this.joinGame(this.props.game._id)}>Katıl</Button>
-            </Container>
-          </Card.Content>
+          <Button color='teal' onClick={() => this.props.history.push('/joinGame/' + this.props.game._id, {id: this.props.game._id})}>Katıl</Button>
         );
       } else {
         return(
-          <Card.Content>
-            <Button className="mini" color='orange' onClick={() => this.joinGame(this.props.game._id)}>Ayrıl</Button>
-          </Card.Content>
+          <Button color='orange' onClick={() => this.joinGame(this.props.game._id)}>Ayrıl</Button>
         );
       }
     } else {
@@ -99,50 +58,29 @@ class GameDetails extends Component {
     let user = Meteor.users.findOne({_id: id}, { fields: { username: 1 }});
     
     return(
-      <p>Oyun Sahibi : {user.username}</p>
+      <p><b>Sunucu : {user.username}</b></p>
     ); 
   }
   
 
   joinGame(gameID){
-    if(!this.props.joined){
-      Meteor.call(
-        'addPlayer',
-        gameID,
-        this.state.value
-      );
-      new Noty({
-        type: 'information',
-        layout: 'topRight',
-        theme: 'sunset',
-        text: 'Oyuna başarıyla katıldın',
-        timeout: 1000,
-        progressBar: true,
-        closeWith: ['click', 'button'],
-        animation: {
-          open: 'noty_effects_open',
-          close: 'noty_effects_close'
-        }
-      }).show();
-    } else {
-      Meteor.call(
-        'removePlayer',
-        gameID
-      );
-      new Noty({
-        type: 'information',
-        layout: 'topRight',
-        theme: 'sunset',
-        text: 'Oyundan başarıyla ayrıldın',
-        timeout: 1000,
-        progressBar: true,
-        closeWith: ['click', 'button'],
-        animation: {
-          open: 'noty_effects_open',
-          close: 'noty_effects_close'
-        }
-      }).show();
-    }
+    Meteor.call(
+      'removePlayer',
+      gameID
+    );
+    new Noty({
+      type: 'information',
+      layout: 'topRight',
+      theme: 'sunset',
+      text: 'Oyundan başarıyla ayrıldın',
+      timeout: 1000,
+      progressBar: true,
+      closeWith: ['click', 'button'],
+      animation: {
+        open: 'noty_effects_open',
+        close: 'noty_effects_close'
+      }
+    }).show();
   }
 
   renderState(){
@@ -168,7 +106,12 @@ class GameDetails extends Component {
   renderPlayers(){
     if(this.props.game.players){
       return this.props.game.players.map((player) => (
-        <List.Item as='li'key={player.id}><b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a></b> : {player.country}</List.Item>
+        <List.Item key={player.id}>
+          <Image avatar src={gravatar.url(player.email)} />
+          <List.Content>
+            <b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a> Tercihleri : {player.option1}, {player.option2}, {player.option3}</b>
+          </List.Content>
+        </List.Item>
       ));
     } else {
       return (
@@ -177,16 +120,22 @@ class GameDetails extends Component {
     }
   }
 
-  renderGame(){
+  render(){
     if(this.props.game){
       return (
         <Card key={this.props.game._id} attached="true">
           <Card.Content>
-            <Card.Header>Oyun İsmi: {this.props.game.name}</Card.Header>
+            <Card.Header>Oyun İsmi: {this.props.game.name}
+            <Button.Group floated='right'>
+              <Button content='Lobiye Dön' onClick={() => this.props.history.push('/games/')} />
+              {this.renderJoinGame()}
+            </Button.Group>
+            </Card.Header>
           </Card.Content>
           <Card.Content>
-            {this.getHost(this.props.game.hostID)}
-            Açıklamalar : <Label basic color='green' horizontal>{"Historical"}</Label> <Label basic color='blue' horizontal>{"1444"}</Label>
+            <Label>EU4</Label>
+            <Label>Tarihi</Label>
+            <Label>Peşkeş</Label>
           </Card.Content>
           <Card.Content>
             Açıklamalar: {this.props.game.description}<br/>
@@ -195,17 +144,12 @@ class GameDetails extends Component {
             {this.renderState()}
           </Card.Content>
           <Card.Content>
-            <Label horizontal as='a' color='green'>1444</Label>
-            <Label horizontal as='a' color='red'>Historical</Label>
-            <Label horizontal as='a' color='teal'>Peşkeş</Label>
-          </Card.Content>
-          <Card.Content>
+            {this.getHost(this.props.game.hostID)}
             <b>Oyuncular:</b>
-            <List as='ol' celled>
+            <List animated verticalAlign='middle'>
               {this.renderPlayers()}
             </List>
           </Card.Content>
-          {this.renderJoinGame()}
           {this.renderHostActions()}
         </Card>
       );
@@ -216,14 +160,6 @@ class GameDetails extends Component {
         </Dimmer>
       );
     }
-  }
-
-  render() {
-    return (
-      <div>
-        {this.renderGame()}
-      </div>
-    );
   }
 }
 
