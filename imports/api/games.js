@@ -34,6 +34,13 @@ if (Meteor.isServer) {
     deleteGame: function(id){
       Games.remove(id);
     },
+    changeState: function(id, newState) {
+      Games.update({_id: id}, {
+        $set: {
+          state: newState
+        }
+      });
+    },
     addPlayer: function(gameID, option1, option2, option3){
       player = {};
       player.id = Meteor.userId();

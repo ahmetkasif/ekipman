@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, List, Dropdown, Dimmer, Loader, Image, Header, Label, Card, Button } from 'semantic-ui-react';
+import { List, Dimmer, Loader, Image, Label, Card, Button, Dropdown } from 'semantic-ui-react';
 import Noty from 'noty';
 
 var gravatar = require('gravatar');
@@ -9,7 +9,8 @@ class GameDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Ottomans'
+      value: 'Ottomans',
+      joinVis: true
     };
     
     this.renderState = this.renderState.bind(this);
@@ -17,6 +18,30 @@ class GameDetails extends Component {
     this.renderJoinGame = this.renderJoinGame.bind(this);
     this.renderHostActions = this.renderHostActions.bind(this);
   }
+
+  componentDidMount(){
+    if(this.props.game){
+      if(this.props.game.state == 0){
+        this.setState({
+          joinVis: false
+        });
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.game !== prevProps.game) {
+      if(this.props.game.state == 0){
+        this.setState({
+          joinVis: false
+        });
+      } else{
+        this.setState({
+          joinVis: true
+        });
+      } 
+    }
+   }
 
   handleChange(event, data){
     this.setState({
@@ -42,14 +67,28 @@ class GameDetails extends Component {
     }
   }
 
+  changeState(newState){
+    this.setState({
+      joinVis: true
+    });
+
+    Meteor.call(
+      'changeState',
+      this.props.game._id,
+      newState,
+    );
+  }
+
   renderHostActions(){
     if(this.props.game.hostID === Meteor.userId()){
       return(
-        <Button.Group>
-          <Button attached='bottom' color='teal' disabled>Alımları Kapat</Button>
-          <Button attached='bottom' color='teal' onClick={() => this.props.history.push('/updateGame/' + this.props.game._id, {id: this.props.game._id})}>Düzenle</Button>
-          <Button attached='bottom' color='red' disabled onClick={() => this.props.history.push('/deleteGame/' + this.props.game._id, {id: this.props.game._id})}>Sil</Button>
-        </Button.Group>
+        <Dropdown color='olive' button text='Seçenekler'>
+          <Dropdown.Menu>
+            <Dropdown.Item text='Alımları Kapat' color='teal' disabled={this.state.joinVis} onClick={() => this.changeState(1)}/>
+            <Dropdown.Item text='Düzenle' onClick={() => this.props.history.push('/updateGame/' + this.props.game._id, {id: this.props.game._id})}/>
+            <Dropdown.Item text='Sil' onClick={() => this.props.history.push('/deleteGame/' + this.props.game._id, {id: this.props.game._id})}/>
+          </Dropdown.Menu>
+        </Dropdown>
       );
     }
   }
@@ -58,7 +97,7 @@ class GameDetails extends Component {
     let user = Meteor.users.findOne({_id: id}, { fields: { username: 1 }});
     if(user){
       return(
-        <p><b>Sunucu : {user.username}</b></p>
+        <p>Sunucu : <b>{user.username}</b></p>
       ); 
     } else {
       return (
@@ -77,7 +116,7 @@ class GameDetails extends Component {
       type: 'information',
       layout: 'topRight',
       theme: 'sunset',
-      text: 'Oyundan başarıyla ayrıldın',
+      text: 'Oyundan başarıyla ayrıldın.',
       timeout: 1000,
       progressBar: true,
       closeWith: ['click', 'button'],
@@ -91,19 +130,19 @@ class GameDetails extends Component {
   renderState(){
     if(this.props.game.state == 0){
       return(
-        <p>Durum: Kayıtlar devam ediyor</p>
+        'Durum: Kayıtlar devam ediyor'
       );
     } else if(this.props.game.state == 1){
       return(
-        <p>Durum: Kayıtlar kapandı. Oyun devam ediyor.</p>
+        'Durum: Kayıtlar kapandı. Oyun devam ediyor.'
       );
     } else if(this.props.game.state == 2){
       return(
-        <p>Durum: Oyun tamamlandı.</p>
+        'Durum: Oyun tamamlandı.'
       );
     } else {
       return(
-        <p>Durum: Bilinmiyor.</p>
+        'Durum: Bilinmiyor.'
       );
     }
   }
@@ -114,7 +153,7 @@ class GameDetails extends Component {
         <List.Item key={player.id}>
           <Image avatar src={gravatar.url(player.email)} />
           <List.Content>
-            <b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a> Tercihleri : {player.option1}, {player.option2}, {player.option3}</b>
+            <b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a>{Meteor.userId() == this.props.game.hostID ? ' Tercihleri :' + player.option1 + ', ' + player.option2 + ', ' + player.option3 : ''}</b>
           </List.Content>
         </List.Item>
       ));
@@ -133,6 +172,7 @@ class GameDetails extends Component {
             <Card.Header>Oyun İsmi: {this.props.game.name}
             <Button.Group floated='right'>
               <Button content='Lobiye Dön' onClick={() => this.props.history.push('/games/')} />
+              {this.renderHostActions()}
               {this.renderJoinGame()}
             </Button.Group>
             </Card.Header>
@@ -143,19 +183,18 @@ class GameDetails extends Component {
             <Label>Peşkeş</Label>
           </Card.Content>
           <Card.Content>
+            {this.getHost(this.props.game.hostID)}
             Açıklamalar: {this.props.game.description}<br/>
             Başlangıç Tarihi: {this.props.game.startDate}<br/>
             Kurallar: {this.props.game.rules}<br/>
             {this.renderState()}
           </Card.Content>
           <Card.Content>
-            {this.getHost(this.props.game.hostID)}
             <b>Oyuncular:</b>
             <List animated verticalAlign='middle'>
               {this.renderPlayers()}
             </List>
           </Card.Content>
-          {this.renderHostActions()}
         </Card>
       );
     } else {

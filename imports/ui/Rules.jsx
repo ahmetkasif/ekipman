@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tab, Header, Card } from 'semantic-ui-react';
+import { Tab, Card } from 'semantic-ui-react';
 
 const panes = [
     { menuItem: 'EU4 Tarihi', render: () =>

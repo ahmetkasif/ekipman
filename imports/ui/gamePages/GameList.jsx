@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Item, Icon, Label, Card, Button, Dimmer, Loader } from 'semantic-ui-react';
+import { Item, Label, Button, Dimmer, Loader } from 'semantic-ui-react';
 
 class GameList extends Component {
   constructor(props) {
@@ -12,10 +12,17 @@ class GameList extends Component {
 
   getHost(id){
     let user = Meteor.users.findOne({_id: id}, { fields: { username: 1 }});
-    
-    return(
-      <p>Oyun Sahibi : {user.username}</p>
-    ); 
+    if(user){
+      return(
+        <p>Sunucu : {user.username}</p>
+      ); 
+    } else {
+      return (
+        <Dimmer active inverted>
+          <Loader inverted>Loading</Loader>
+        </Dimmer>
+      );
+    }
   }
 
   renderState(state){
@@ -43,7 +50,9 @@ class GameList extends Component {
     if(this.props.games){
       return this.props.games.map((game) => (
         <Item key={game._id}>
-          <Item.Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+          <Item>
+            <Item.Image verticalAlign='middle' size='medium' rounded src='/images/eu4logo.png' />
+          </Item>
           <Item.Content>
             <Item.Header as='h4'>Oyun İsmi: {game.name}</Item.Header>
             <Item.Meta>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Button, Input, Form, TextArea, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Input, Form, TextArea, Card, Dimmer, Loader } from 'semantic-ui-react';
 import Noty from 'noty';
 
 class UpdateGame extends Component {
@@ -31,6 +31,17 @@ class UpdateGame extends Component {
       });
     }
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.game !== prevProps.game) {
+      this.setState({
+        name: this.props.game.name,
+        description: this.props.game.description,
+        rules: this.props.game.rules,
+        startDate: this.props.game.startDate
+      });
+    }
+   }
 
   updateName(event, data){
     this.setState({
@@ -78,71 +89,31 @@ class UpdateGame extends Component {
         close: 'noty_effects_close'
       }
     }).show();
-    this.props.history.push('/games');
+    this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id});
   }
 
   render() {
     if(this.props.game){
       return (
-        <div className="newPost">
-          <h3 className="newPostHeader">Oyun duyurusunu güncelle</h3>
-          <div className="newPostContent">
-            <Input
-              label='Oyun İsmi'
-              size='small'
-              placeholder="İsim giriniz.."
-              value={this.state.name}
-              type="text"
-              onChange={this.updateName}
-              className='each'
-            />
-            <Form className="each">
-              <TextArea
-                size='large'
-                placeholder="Kısa Açıklama"
-                type="text"
-                value={this.state.description}
-                onChange={this.updateDescription}
-                className="each"
-              />
-            </Form>
-            <Form className="each">
-              <TextArea
-                size='large'
-                placeholder="Kurallar"
-                type="text"
-                value={this.state.rules}
-                onChange={this.updateRules}
-                className="each"
-              />
-            </Form>
-            <Input
-              label='Oyun Tarihi'
-              size='small'
-              placeholder="Başlık giriniz.."
-              value={this.state.startDate}
-              type="text"
-              onChange={this.updateStartDate}
-              className='each'
-            />
-          </div>
-          <div>
-            <Button
-              size="medium"
-              className="mini"
-              color="red"
-              content="İptal"
-              onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}
-            />
-            <Button
-              size="medium"
-              className="mini"
-              color="teal"
-              content="Güncelle"
-              onClick={() => this.updateGame()}
-            />
-          </div>
-        </div>
+        <Card className="profile">
+        <Card.Content header={
+          <Card.Header as='h4'>
+            Yeni oyun oluştur
+          </Card.Header>
+        }/>
+        <Card.Content>
+          <Form>
+            <Form.Field control={Input} label='Oyun İsmi' value={this.state.name} onChange={this.updateName} placeholder='İsim' />
+            <Form.Field label='Açıklamalar' control={TextArea} rows='3' value={this.state.description} onChange={this.updateDescription} />
+            <Form.Field label='Kurallar' control={TextArea} rows='3' value={this.state.rules} onChange={this.updateRules} />
+            <Form.Field control={Input} type='date' label='Oyun Tarihi' placeholder='Tarih' value={this.state.startDate} onChange={this.updateStartDate} />
+            <Form.Group inline floated='right'>
+              <Form.Field control={Button} floated='right' onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}>İptal</Form.Field>
+              <Form.Field primary control={Button} floated='right' onClick={() => this.updateGame()}>Gönder</Form.Field>
+            </Form.Group>
+          </Form>
+        </Card.Content>
+      </Card>
       );
     } else {
       return(

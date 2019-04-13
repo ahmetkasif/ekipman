@@ -1,60 +1,78 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown } from 'semantic-ui-react';
+import { Menu, Image, Dropdown } from 'semantic-ui-react';
 
 export default class Nav extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activeItem: 'home'
+    };
 
     this.handleRoute = this.handleRoute.bind(this);
   }
 
-  state = {}
+  componentDidMount(){
+    if(this.props.match.path){
+      if(this.props.match.path == '/'){
+        this.setState({
+          activeItem: 'home'
+        });
+      } else {
+        this.setState({
+          activeItem: this.props.match.path.slice(1)
+        });
+      }
+    }
+  }
 
-  handleRoute(targetRoute){
+  handleRoute(targetRoute, name){
     if (targetRoute !== this.props.location.pathname) {
       this.props.history.push(targetRoute);
+      this.setState({
+        activeItem: name 
+      });
     }
   }
 
   render() {
     return (
-      <Menu stackable className="navContainer">
-        <Menu.Item className="generated">
-          <img src='/logo.png' />
+      <Menu pointing stackable color='teal'>
+        <Menu.Item>
+          <img src='/images/logo.png' />
         </Menu.Item>
         <Menu.Item
           name='Anasayfa'
-          className="navButton"
-          onClick={() => this.handleRoute('/')}>
+          active={this.state.activeItem === 'home'}
+          onClick={() => this.handleRoute('/', 'home')}>
             Anasayfa
         </Menu.Item>
         {Meteor.userId() ?
           <Menu.Item
             name='Oyunlar'
-            className="navButton"
-            onClick={() => this.handleRoute('/games')}>
+            active={this.state.activeItem === 'games'}
+            onClick={() => this.handleRoute('/games', 'games')}>
               Oyunlar
           </Menu.Item>
         : ""}
         <Menu.Item
           name='Lider Tablosu'
-          className="navButton"
-          onClick={() => this.handleRoute('/leaderboard')}>
+          active={this.state.activeItem === 'leaderboard'}
+          onClick={() => this.handleRoute('/leaderboard', 'leaderboard')}>
             Liderler Tablosu
         </Menu.Item>
         {Meteor.userId() ?
           <Menu.Item
             name='Kurallar'
-            className="navButton"
-            onClick={() => this.handleRoute('/rules')}>
+            active={this.state.activeItem === 'rules'}
+            onClick={() => this.handleRoute('/rules', 'rules')}>
               Oyun Kuralları
           </Menu.Item>:
         ''}
         {Meteor.userId() ?
           <Menu.Item
             name='DLC-Mod Linkleri'
-            className="navButton"
-            onClick={() => this.handleRoute('/links')}>
+            active={this.state.activeItem === 'links'}
+            onClick={() => this.handleRoute('/links', 'links')}>
               DLC-Mod Linkleri
           </Menu.Item>:
         ''}

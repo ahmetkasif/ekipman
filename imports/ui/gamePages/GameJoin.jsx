@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Button, Form, Input, Select, Radio, Checkbox, TextArea, Card } from 'semantic-ui-react';
+import { Button, Form, Select, Checkbox, TextArea, Card } from 'semantic-ui-react';
 import Noty from 'noty';
 
 const options = [
@@ -54,11 +54,12 @@ class GameJoin extends Component {
 
   handleChecked(event, data){
     this.setState({
-      checkbox: data.value
+      checkbox: data.checked
     });
   }
 
   joinGame(gameID){
+    if(this.state.checkbox){
       Meteor.call(
         'addPlayer',
         gameID,
@@ -80,6 +81,21 @@ class GameJoin extends Component {
         }
       }).show();
       this.props.history.push('/games/' + gameID, {id: gameID});
+    } else {
+      new Noty({
+        type: 'warning',
+        layout: 'topRight',
+        theme: 'sunset',
+        text: 'Devam etmeden önce kuralları kabul etmelisin.',
+        timeout: 1000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+        }
+      }).show();
+    }
   }
 
   render() {
@@ -98,8 +114,10 @@ class GameJoin extends Component {
             <Form.Field control={Select} label='2. Tercih' options={options} onChange={this.handleChange2} value={this.state.op2} placeholder='2. Tercih' />
             <Form.Field control={Select} label='3. Tercih' options={options} onChange={this.handleChange3} value={this.state.op3} placeholder='3. Tercih' />
             <Form.Field control={Checkbox} label='Kuralları okudum, kabul ediyorum.' onChange={this.handleChecked} checked={this.state.checkbox} />
-            <Form.Field primary control={Button} floated='right' onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}>İptal</Form.Field>
-            <Form.Field primary control={Button} floated='right' onClick={() => this.joinGame(this.props.game._id)}>Gönder</Form.Field>
+            <Form.Group inline floated='right'>
+              <Form.Field control={Button} floated='right' onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}>İptal</Form.Field>
+              <Form.Field primary control={Button} floated='right' onClick={() => this.joinGame(this.props.game._id)}>Gönder</Form.Field>
+            </Form.Group>
           </Form>
         </Card.Content>
       </Card>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Divider, Header, List, Card } from 'semantic-ui-react';
+import { Divider, List, Card, Image } from 'semantic-ui-react';
 
 export default class About extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   render() {
@@ -17,6 +16,8 @@ export default class About extends Component {
         }/>
         <Card.Content>
           Türk Strateji Oyuncuları Topluluğu (TSOT) resmi web uygulamasıdır.
+          <Divider />
+          <Image className="generated" size='medium' src='/images/logo.png' />
           <Divider />
           <List bulleted size={'large'}>
             <List.Item>Uygulama içi özelliklere, kayıt olarak ulaşılabilmektedir</List.Item>
@@ -47,8 +48,6 @@ export default class About extends Component {
           Sorularınız, görüşleriniz ve hata bildirimi için, <b>noreply@tsotapp.com</b> adresine e-posta ile ulaşabilirsiniz.
           <Divider />
           <b>UYGULAMA GELİŞTİRME AŞAMASINDADIR. ÇOĞU ÖZELLİK, HENÜZ TASARIM AŞAMASINDADIR. GELİŞİM SÜRECİNİ HAKKINDA SAYFASINDAN TAKİP EDEBİLİRSİNiZ.</b>
-          <Divider />
-          <img className="ui medium centered rounded image" src='/logo.png' />
         </Card.Content>
       </Card>
     );
