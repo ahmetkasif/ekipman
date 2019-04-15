@@ -102,7 +102,7 @@ class GameJoin extends Component {
     const { value } = this.state
 
     return (
-      <Card className="profile">
+      <Card>
         <Card.Content header={
           <Card.Header as='h4'>
             Oyuna Katıl

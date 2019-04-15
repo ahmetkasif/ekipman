@@ -95,7 +95,7 @@ class UpdateGame extends Component {
   render() {
     if(this.props.game){
       return (
-        <Card className="profile">
+        <Card>
         <Card.Content header={
           <Card.Header as='h4'>
             Yeni oyun oluştur

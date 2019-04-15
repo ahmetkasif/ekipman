@@ -46,17 +46,15 @@ export default class ForgotPassword extends Component {
 
   render() {
     return (
-      <div className='loginContainer'>
-        <Card className="login">
-          <Card.Content>
-            <Input fluid value={this.state.mail} onChange={this.updateMail} placeholder='E-Posta' /><br/>
-            <Button fluid onClick={() => this.handlePasswordReset()} color='teal' floated='right' type='submit'>Gönder</Button>
-          </Card.Content>
-          <Card.Content extra>
-            <a onClick={() => this.handleRoute('/login')}>Hatırladın mı ?</a>
-          </Card.Content>
-        </Card>
-      </div>
+      <Card>
+        <Card.Content>
+          <Input fluid value={this.state.mail} onChange={this.updateMail} placeholder='E-Posta' /><br/>
+          <Button fluid onClick={() => this.handlePasswordReset()} color='teal' floated='right' type='submit'>Gönder</Button>
+        </Card.Content>
+        <Card.Content extra>
+          <a onClick={() => this.handleRoute('/login')}>Hatırladın mı ?</a>
+        </Card.Content>
+      </Card>
     );
   }
 }

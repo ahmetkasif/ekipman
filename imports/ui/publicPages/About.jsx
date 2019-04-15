@@ -8,7 +8,7 @@ export default class About extends Component {
 
   render() {
     return (
-      <Card className="profile">
+      <Card>
         <Card.Content header={
           <Card.Header as='h4'>
             Hakkında

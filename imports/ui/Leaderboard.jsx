@@ -202,7 +202,7 @@ export default class Leaderboard extends Component {
   render() {
     const { activeIndex } = this.state
     return (
-      <Card className="profile">
+      <Card>
         <Card.Content header={
           <Card.Header as='h4'>
             Liderler Tablosu

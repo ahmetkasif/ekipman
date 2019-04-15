@@ -76,8 +76,8 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div className='loginContainer'>
-        <Card className="login">
+      <div>
+        <Card>
           <Card.Content>
             <Input fluid value={this.state.username} onChange={this.updateUsername} placeholder='Kullanıcı Adı' /><br/>
             <Input fluid value={this.state.email} onChange={this.updateEmail} placeholder='E-Posta' /><br/>

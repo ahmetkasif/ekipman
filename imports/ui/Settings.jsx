@@ -9,9 +9,9 @@ export default class Settings extends Component {
 
   render() {
     return (
-      <Card className="profile">
+      <Card>
         <Card.Content header={
-          <div className="profileTop">
+          <div>
             <Header as='h4'>
               <Header.Content>
                 Hesap Ayarları
@@ -22,7 +22,7 @@ export default class Settings extends Component {
         <Card.Content>
           <Card>
             <Card.Content header={
-              <div className="profileTop">
+              <div>
                 <Header as='h4'>
                   <Header.Content>
                     Şifre Değiştir

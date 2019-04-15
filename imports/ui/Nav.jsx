@@ -78,13 +78,6 @@ export default class Nav extends Component {
         ''}
         {Meteor.userId() ?
           <Menu.Menu position='right'>
-            <Menu.Item position='right'>
-              <div className='ui transparent icon input'>
-                <input className='prompt' type='text' placeholder='Başlayın...' />
-                <i className='fa fa-search' />
-              </div>
-              <div className='results' />
-            </Menu.Item>
             <Dropdown item text='Seçenekler'>
               <Dropdown.Menu>
                 <Dropdown.Item text='Profil' onClick={() => this.props.history.push('/profile/' + Meteor.users.findOne(Meteor.userId()).username, {username: Meteor.users.findOne(Meteor.userId()).username})}/>
@@ -96,13 +89,6 @@ export default class Nav extends Component {
           </Menu.Menu>
           :
           <Menu.Menu position='right'>
-            <Menu.Item position='right'>
-              <div className='ui transparent icon input'>
-                <input className='prompt' type='text' placeholder='Başlayın...' />
-                <i className='fa fa-search' />
-              </div>
-              <div className='results' />
-            </Menu.Item>
             <Menu.Item
               position='right'
               name='Giriş Yap'

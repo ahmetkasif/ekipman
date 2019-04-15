@@ -8,14 +8,7 @@ export default class NotFound extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Sayfa bulunamadı.</h3>
-        <Button
-          className="ui primary button"
-          content='Geri dön'
-          onClick={() => this.props.history.goBack()}
-        />
-      </div>
+      <h3>Sayfa bulunamadı.</h3>
     );
   }
 }

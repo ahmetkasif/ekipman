@@ -10,7 +10,7 @@ export default class Links extends Component {
   render() {
     return (
         <Step>
-            <Card className="profile">
+            <Card>
                 <Card.Content header={
                     <Card.Header as='h4'>
                         İndirme Linkleri
@@ -24,9 +24,9 @@ export default class Links extends Component {
                 </List>
                 </Card.Content>
             </Card>
-            <Card className="profile">
+            <Card>
                 <Card.Content header={
-                <div className="profileTop">
+                <div>
                     <Header as='h4'>
                     <Header.Content>
                     HOI4 Orjinal Oyunda DLC Aktivasyonu
@@ -42,9 +42,9 @@ export default class Links extends Component {
                 </List>
                 </Card.Content>
             </Card>
-            <Card className="profile">
+            <Card>
                 <Card.Content header={
-                <div className="profileTop">
+                <div>
                     <Header as='h4'>
                     <Header.Content>
                     Stellaris Orjinal Oyunda DLC Aktivasyonu
@@ -60,9 +60,9 @@ export default class Links extends Component {
                 </List>
                 </Card.Content>
             </Card>
-            <Card className="profile">
+            <Card>
                 <Card.Content header={
-                <div className="profileTop">
+                <div>
                     <Header as='h4'>
                     <Header.Content>
                     HOI4 ... Modu

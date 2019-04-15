@@ -75,8 +75,8 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className='loginContainer'>
-        <Card className="login">
+      <div>
+        <Card>
           <Card.Content>
             <Input fluid value={this.state.username} onChange={this.updateUsername} placeholder='Kullanıcı Adı' /><br/>
             <Input fluid value={this.state.password} onChange={this.updatePassword} type='password' placeholder='Şifre' /><br/>

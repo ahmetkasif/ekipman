@@ -14,8 +14,8 @@ class Profile extends Component {
   renderProfile(){
     if(this.props.user){
       return(
-        <Card className="card">
-          <Card.Content className="cardHeader" header={
+        <Card>
+          <Card.Content header={
             <Header as='h4' image>
               <Image avatar src={gravatar.url(this.props.user.emails[0].address)} />
               <Header.Content>

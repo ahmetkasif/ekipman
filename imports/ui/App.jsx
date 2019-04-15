@@ -42,7 +42,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const PublicRoute = ({component: Component, ...rest}) => {
   return (
     <Route {...rest} render={matchProps => (
-      <div className="DefaultLayout">
+      <div>
         <Nav {...matchProps} />
         <Component {...matchProps} />
       </div>
@@ -58,26 +58,24 @@ export default class App extends Component {
   render() {
     return (
       <Router history={ createHistory() }>
-        <div className="fullHeight">
-          <Switch>
-            <PrivateRoute path="/games" exact component={GameLobby}/>
-            <PrivateRoute path="/games/:gameId?" exact component={GameDetailsContainer}/>
-            <PrivateRoute path="/newGame" exact component={NewGame}/>
-            <PrivateRoute path="/joinGame/:gameId?" exact component={GameJoinContainer}/>
-            <PrivateRoute path="/updateGame/:gameId?" exact component={UpdateGameContainer}/>
-            <PrivateRoute path="/profile/:username?" exact component={ProfileContainer}/>
-            <PrivateRoute path="/rules" exact component={Rules}/>
-            <PrivateRoute path="/links" exact component={Links}/>
-            <PrivateRoute path="/settings" exact component={Settings}/>
-            <PublicRoute path="/" exact component={Home}/>
-            <PublicRoute path="/login" exact component={Login}/>
-            <PublicRoute path="/register" exact component={Register}/>
-            <PublicRoute path="/forgotPassword" exact component={ForgotPassword}/>
-            <PublicRoute path="/leaderboard" exact component={Leaderboard}/>
-            <PublicRoute path="/about" exact component={About}/>
-            <PublicRoute component={NotFound} />
-          </Switch>
-        </div>
+        <Switch>
+          <PrivateRoute path="/games" exact component={GameLobby}/>
+          <PrivateRoute path="/games/:gameId?" exact component={GameDetailsContainer}/>
+          <PrivateRoute path="/newGame" exact component={NewGame}/>
+          <PrivateRoute path="/joinGame/:gameId?" exact component={GameJoinContainer}/>
+          <PrivateRoute path="/updateGame/:gameId?" exact component={UpdateGameContainer}/>
+          <PrivateRoute path="/profile/:username?" exact component={ProfileContainer}/>
+          <PrivateRoute path="/rules" exact component={Rules}/>
+          <PrivateRoute path="/links" exact component={Links}/>
+          <PrivateRoute path="/settings" exact component={Settings}/>
+          <PublicRoute path="/" exact component={Home}/>
+          <PublicRoute path="/login" exact component={Login}/>
+          <PublicRoute path="/register" exact component={Register}/>
+          <PublicRoute path="/forgotPassword" exact component={ForgotPassword}/>
+          <PublicRoute path="/leaderboard" exact component={Leaderboard}/>
+          <PublicRoute path="/about" exact component={About}/>
+          <PublicRoute component={NotFound} />
+        </Switch>
       </Router>
     );
   }

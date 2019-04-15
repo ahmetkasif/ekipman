@@ -10,7 +10,7 @@ export default class GameLobby extends Component {
 
   render() {
     return (
-      <Card className="cardSpecial">
+      <Card>
         <Card.Content header={
           <Card.Header as='h4'>
             Oyunlar

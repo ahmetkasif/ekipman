@@ -3,7 +3,7 @@
 
 /**************  GLOBALS ************/
 
-html, body, #react-root, .render-target {
+html, body, #react-root, #render-target {
 	background-color: @primary!important;
 	height: 100%;
 }
@@ -13,19 +13,19 @@ html, body, #react-root, .render-target {
 }
 
 .generated{
-	background-image: -webkit-linear-gradient(92deg, #ff2929, #ffffff);
-	-webkit-animation: hue 15s infinite linear;
+	background-image: linear-gradient(92deg, #ff2929, #ffffff);
+	animation: hue 15s infinite linear;
 	display: flex!important;
 	margin: auto;
 }
 
-@-webkit-keyframes hue {
+@keyframes hue {
 	from {
-		-webkit-filter: hue-rotate(0deg);
+		filter: hue-rotate(0deg);
 	}
 
 	to {
-		-webkit-filter: hue-rotate(-360deg);
+		filter: hue-rotate(-360deg);
 	}
 }
 

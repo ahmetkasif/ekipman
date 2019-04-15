@@ -41,7 +41,7 @@ export default class Rules extends Component {
 
   render() {
     return (
-      <Card className="profile">
+      <Card>
         <Card.Content header={
           <Card.Header as='h4'>
             Oyun Kuralları
