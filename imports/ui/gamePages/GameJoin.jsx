@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Button, Form, Select, Checkbox, TextArea, Card } from 'semantic-ui-react';
+import { Button, Form, Select, Checkbox, Segment, Header } from 'semantic-ui-react';
 import Noty from 'noty';
 
 const options = [
@@ -102,25 +102,19 @@ class GameJoin extends Component {
     const { value } = this.state
 
     return (
-      <Card>
-        <Card.Content header={
-          <Card.Header as='h4'>
-            Oyuna Katıl
-          </Card.Header>
-        }/>
-        <Card.Content>
-          <Form>
-            <Form.Field control={Select} label='1. Tercih' options={options} onChange={this.handleChange1} value={this.state.op1} placeholder='1. Tercih' />
-            <Form.Field control={Select} label='2. Tercih' options={options} onChange={this.handleChange2} value={this.state.op2} placeholder='2. Tercih' />
-            <Form.Field control={Select} label='3. Tercih' options={options} onChange={this.handleChange3} value={this.state.op3} placeholder='3. Tercih' />
-            <Form.Field control={Checkbox} label='Kuralları okudum, kabul ediyorum.' onChange={this.handleChecked} checked={this.state.checkbox} />
-            <Form.Group inline floated='right'>
-              <Form.Field control={Button} floated='right' onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}>İptal</Form.Field>
-              <Form.Field primary control={Button} floated='right' onClick={() => this.joinGame(this.props.game._id)}>Gönder</Form.Field>
-            </Form.Group>
-          </Form>
-        </Card.Content>
-      </Card>
+      <Segment className='page' raised color='teal'>
+        <Header as='h3' dividing color='teal' content='Oyuna Katıl'/>
+        <Form>
+          <Form.Field control={Select} label='1. Tercih' options={options} onChange={this.handleChange1} value={this.state.op1} placeholder='1. Tercih' />
+          <Form.Field control={Select} label='2. Tercih' options={options} onChange={this.handleChange2} value={this.state.op2} placeholder='2. Tercih' />
+          <Form.Field control={Select} label='3. Tercih' options={options} onChange={this.handleChange3} value={this.state.op3} placeholder='3. Tercih' />
+          <Form.Field control={Checkbox} label='Kuralları okudum, kabul ediyorum.' onChange={this.handleChecked} checked={this.state.checkbox} />
+          <Form.Group inline floated='right'>
+            <Form.Field control={Button} floated='right' onClick={() => this.props.history.push('/games/' + this.props.game._id, {id: this.props.game._id})}>İptal</Form.Field>
+            <Form.Field primary control={Button} floated='right' onClick={() => this.joinGame(this.props.game._id)}>Gönder</Form.Field>
+          </Form.Group>
+        </Form>
+      </Segment>
     );
   }
 }

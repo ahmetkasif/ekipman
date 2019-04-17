@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { List, Dimmer, Loader, Image, Label, Card, Button, Dropdown } from 'semantic-ui-react';
+import { List, Dimmer, Loader, Image, Segment, Header, Divider, Button, Dropdown } from 'semantic-ui-react';
 import Noty from 'noty';
 
 var gravatar = require('gravatar');
@@ -167,35 +167,26 @@ class GameDetails extends Component {
   render(){
     if(this.props.game){
       return (
-        <Card key={this.props.game._id} attached="true">
-          <Card.Content>
-            <Card.Header>Oyun İsmi: {this.props.game.name}
-            <Button.Group floated='right'>
-              <Button content='Lobiye Dön' onClick={() => this.props.history.push('/games/')} />
-              {this.renderHostActions()}
-              {this.renderJoinGame()}
-            </Button.Group>
-            </Card.Header>
-          </Card.Content>
-          <Card.Content>
-            <Label>EU4</Label>
-            <Label>Tarihi</Label>
-            <Label>Peşkeş</Label>
-          </Card.Content>
-          <Card.Content>
-            {this.getHost(this.props.game.hostID)}
-            Açıklamalar: {this.props.game.description}<br/>
-            Başlangıç Tarihi: {this.props.game.startDate}<br/>
-            Kurallar: {this.props.game.rules}<br/>
-            {this.renderState()}
-          </Card.Content>
-          <Card.Content>
-            <b>Oyuncular:</b>
-            <List animated verticalAlign='middle'>
-              {this.renderPlayers()}
-            </List>
-          </Card.Content>
-        </Card>
+        <Segment key={this.props.game._id} className='page' raised color='teal'>
+          <Header as='h3' dividing color='teal'>
+            {'Oyun İsmi: ' + this.props.game.name}
+          </Header>
+          <Button.Group floated='right'>
+            <Button content='Lobiye Dön' onClick={() => this.props.history.push('/games/')} />
+            {this.renderHostActions()}
+            {this.renderJoinGame()}
+          </Button.Group>
+          {this.getHost(this.props.game.hostID)}
+          Açıklamalar: {this.props.game.description}<br/>
+          Başlangıç Tarihi: {this.props.game.startDate}<br/>
+          Kurallar: {this.props.game.rules}<br/>
+          {this.renderState()}
+          <Divider/>
+          <b>Oyuncular:</b>
+          <List animated verticalAlign='middle'>
+            {this.renderPlayers()}
+          </List>
+        </Segment>
       );
     } else {
       return (
@@ -210,7 +201,7 @@ class GameDetails extends Component {
 export default GameDetailsContainer = withTracker(props => {
   Tracker.autorun(() => {
     Meteor.subscribe('users');
-    Meteor.subscribe('games');
+    Meteor.subscribe('game', props.match.params.gameId);
   });
 
   const users = Accounts.users.find({}).fetch();

@@ -8,7 +8,7 @@ if (Meteor.isServer) {
     /*
       state: 0 (not yet started), 1 (being played), 2 (finished)
     */
-    newGame: function(name, description, rules, startDate, isCustom){
+    newGame: function(name, description, rules, startDate, isCustom, type){
       var state = 0;
       var hostID = Meteor.userId();
       Games.insert({
@@ -18,16 +18,18 @@ if (Meteor.isServer) {
         rules,
         startDate,
         isCustom,
-        state
+        state,
+        type
       });
     },
-    updateGame: function(id, name, description, rules, startDate){
+    updateGame: function(id, name, description, rules, startDate, type){
       Games.update(id, {
         $set: {
-          name: name,
-          description: description,
-          rules: rules,
-          startDate: startDate
+          name,
+          description,
+          rules,
+          startDate,
+          type
         }
       });
     },

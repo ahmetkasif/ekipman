@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tab, Image, Header, Table, Card } from 'semantic-ui-react';
+import { Tab, Image, Header, Table, Segment } from 'semantic-ui-react';
 
 const panes = [
   { menuItem: 'EU4', render: () => <Table basic='very' >
@@ -202,16 +202,10 @@ export default class Leaderboard extends Component {
   render() {
     const { activeIndex } = this.state
     return (
-      <Card>
-        <Card.Content header={
-          <Card.Header as='h4'>
-            Liderler Tablosu
-          </Card.Header>
-        }/>
-        <Card.Content>
-          <Tab panes={panes}/>
-        </Card.Content>
-      </Card>
+      <Segment className='page' raised color='teal'>
+        <Header as='h3' dividing color='teal' content='Liderler Tablosu'/>
+        <Tab menu={{ secondary: true, pointing: true }} panes={panes}/>
+      </Segment>
     );
   }
 }

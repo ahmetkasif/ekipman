@@ -73,7 +73,7 @@ export default class Nav extends Component {
             name='DLC-Mod Linkleri'
             active={this.state.activeItem === 'links'}
             onClick={() => this.handleRoute('/links', 'links')}>
-              DLC-Mod Linkleri
+              S.S.S
           </Menu.Item>:
         ''}
         {Meteor.userId() ?

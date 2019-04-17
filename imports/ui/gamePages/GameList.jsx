@@ -45,14 +45,37 @@ class GameList extends Component {
     }
   }
 
+  renderLogo(type){
+    switch (type) {
+      case 'eu4':
+        return(
+          <Item.Image size='small' src='/images/eu4logo.png' />
+        );
+      case 'hoi4':
+        return(
+          <Item.Image size='small' src='/images/hoi4logo.png' />
+        );
+      case 'civ6':
+        return(
+          <Item.Image size='small' src='/images/civ6logo.png' />
+        );
+      case 'ck2':
+        return(
+          <Item.Image size='small' src='/images/ck2logo.png' />
+        );
+      default:
+        return(
+          <Item.Image size='small' src='/images/defaultgamelogo.png' />
+        );
+        break;
+    }
+  }
 
   render(){
     if(this.props.games){
       return this.props.games.map((game) => (
         <Item key={game._id}>
-          <Item>
-            <Item.Image verticalAlign='middle' size='medium' rounded src='/images/eu4logo.png' />
-          </Item>
+          {this.renderLogo(game.type)}
           <Item.Content>
             <Item.Header as='h4'>Oyun İsmi: {game.name}</Item.Header>
             <Item.Meta>

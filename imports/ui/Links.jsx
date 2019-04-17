@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Step, Header, List, Card } from 'semantic-ui-react';
+import { Header, List, Segment } from 'semantic-ui-react';
 
 export default class Links extends Component {
   constructor(props) {
@@ -9,76 +9,41 @@ export default class Links extends Component {
 
   render() {
     return (
-        <Step>
-            <Card>
-                <Card.Content header={
-                    <Card.Header as='h4'>
-                        İndirme Linkleri
-                    </Card.Header>
-                }/>
-                <Card.Content>
+        <Segment className='page' raised color='teal'>
+            <Header as='h3' dividing color='teal' content='S.S.S'/>
+            <Segment className='page' raised color='teal'>
+                <Header as='h3' dividing color='teal' content='EU4 Orjinal Oyunda DLC Aktivasyonu Nasıl Yapılır ?'/>
                 <List bulleted size={'large'}>
                     <List.Item>
                         Hazırlanıyor..
                     </List.Item>
                 </List>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content header={
-                <div>
-                    <Header as='h4'>
-                    <Header.Content>
-                    HOI4 Orjinal Oyunda DLC Aktivasyonu
-                    </Header.Content>
-                    </Header>
-                </div>
-                }/>
-                <Card.Content>
+            </Segment>
+            <Segment className='page' raised color='teal'>
+                <Header as='h3' dividing color='teal' content='HOI4 Orjinal Oyunda DLC Aktivasyonu Nasıl Yapılır ?'/>
                 <List bulleted size={'large'}>
                     <List.Item>
                         Hazırlanıyor..
                     </List.Item>
                 </List>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content header={
-                <div>
-                    <Header as='h4'>
-                    <Header.Content>
-                    Stellaris Orjinal Oyunda DLC Aktivasyonu
-                    </Header.Content>
-                    </Header>
-                </div>
-                }/>
-                <Card.Content>
+            </Segment>
+            <Segment className='page' raised color='teal'>
+                <Header as='h3' dividing color='teal' content='Stellaris Orjinal Oyunda DLC Aktivasyonu Nasıl Yapılır ?'/>
                 <List bulleted size={'large'}>
                     <List.Item>
                         Hazırlanıyor..
                     </List.Item>
                 </List>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content header={
-                <div>
-                    <Header as='h4'>
-                    <Header.Content>
-                    HOI4 ... Modu
-                    </Header.Content>
-                    </Header>
-                </div>
-                }/>
-                <Card.Content>
+            </Segment>
+            <Segment className='page' raised color='teal'>
+                <Header as='h3' dividing color='teal' content='CIV6 Orjinal Oyunda DLC Aktivasyonu Nasıl Yapılır ?'/>
                 <List bulleted size={'large'}>
                     <List.Item>
                         Hazırlanıyor..
                     </List.Item>
                 </List>
-                </Card.Content>
-            </Card>
-        </Step>
+            </Segment>
+        </Segment>
     );
   }
 }

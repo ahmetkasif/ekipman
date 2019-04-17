@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Image, Header, Dimmer, Loader, Card } from 'semantic-ui-react';
+import { Image, Header, Dimmer, Loader, Segment, Container } from 'semantic-ui-react';
 
 var gravatar = require('gravatar');
 
@@ -14,21 +14,18 @@ class Profile extends Component {
   renderProfile(){
     if(this.props.user){
       return(
-        <Card>
-          <Card.Content header={
-            <Header as='h4' image>
-              <Image avatar src={gravatar.url(this.props.user.emails[0].address)} />
-              <Header.Content>
-                {this.props.user.username}
-                <Header.Subheader>{this.props.user.emails[0].address}</Header.Subheader>
-              </Header.Content>
-            </Header>
-          }/>
-          <Card.Content>
-            <b>Bio: </b>Placeholder text.
-            <b>Some information about author: </b>Placeholder text.
-          </Card.Content>
-        </Card>
+        <Segment className='profile' raised color='teal'>
+          <Header as='h4' dividing color='teal' image>
+            <Image avatar src={gravatar.url(this.props.user.emails[0].address)} />
+            <Header.Content>
+              {this.props.user.username}
+              <Header.Subheader>{this.props.user.emails[0].address}</Header.Subheader>
+            </Header.Content>
+          </Header>
+          <Container>
+            Steam bağlantısı kurulmadı, profile erişilemiyor.
+          </Container>
+        </Segment>
       );
     } else {
       return(
