@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Card } from 'semantic-ui-react';
+import { Button, Input, Segment, Form, Header, Divider } from 'semantic-ui-react';
 import Noty from 'noty';
 
 export default class Login extends Component {
@@ -61,7 +61,7 @@ export default class Login extends Component {
         type: 'warning',
         layout: 'topRight',
         theme: 'sunset',
-        text: 'Please enter your credentials..',
+        text: 'Lütfen formu doldurun',
         timeout: 1000,
         progressBar: true,
         closeWith: ['click', 'button'],
@@ -75,19 +75,19 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <Card>
-          <Card.Content>
-            <Input fluid value={this.state.username} onChange={this.updateUsername} placeholder='Kullanıcı Adı' /><br/>
-            <Input fluid value={this.state.password} onChange={this.updatePassword} type='password' placeholder='Şifre' /><br/>
-            <Button fluid onClick={() => this.login()} color='teal' floated='right' type='submit'>Giriş Yap</Button>
-          </Card.Content>
-          <Card.Content extra>
-            <a onClick={() => this.handleRoute('/forgotPassword')}>Şifreni mi unuttun ?</a><br/>
-            <a onClick={() => this.handleRoute('/register')}>Hesabın yok mu ?</a>
-          </Card.Content>
-        </Card>
-      </div>
+      <Segment className='auth' raised color='teal'>
+        <Header as='h3' dividing color='teal' content='Giriş Yap'/>
+        <Form>
+          <Form.Field control={Input} label='Kullanıcı Adı' value={this.state.username} onChange={this.updateUsername} placeholder='Kullanıcı Adı' />
+          <Form.Field control={Input} label='Şifre' value={this.state.password} onChange={this.updatePassword} type='password' placeholder='Şifre' />
+          <Form.Field control={Button} color='teal' fluid onClick={() => this.login()}>Giriş Yap</Form.Field>
+        </Form>
+        <Segment basic>
+          <a onClick={() => this.handleRoute('/forgotPassword')}>Şifreni mi unuttun ?</a>
+          <Divider hidden/>
+          <a onClick={() => this.handleRoute('/register')}>Hesabın yok mu ?</a>
+        </Segment>
+      </Segment>
     );
   }
 }

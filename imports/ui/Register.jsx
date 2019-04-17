@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Card} from 'semantic-ui-react';
+import { Button, Input, Form, Segment, Header } from 'semantic-ui-react';
 import Noty from 'noty';
 
 export default class Register extends Component {
@@ -70,25 +70,38 @@ export default class Register extends Component {
           this.props.history.push('/');
         }
       });
+    } else {
+      new Noty({
+        type: 'warning',
+        layout: 'topRight',
+        theme: 'sunset',
+        text: 'Lütfen formu doldurun',
+        timeout: 1000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+        }
+      }).show();
     }
   }
       
 
   render() {
     return (
-      <div>
-        <Card>
-          <Card.Content>
-            <Input fluid value={this.state.username} onChange={this.updateUsername} placeholder='Kullanıcı Adı' /><br/>
-            <Input fluid value={this.state.email} onChange={this.updateEmail} placeholder='E-Posta' /><br/>
-            <Input fluid value={this.state.password} onChange={this.updatePassword} type='password' placeholder='Şifre' /><br/>
-            <Button fluid onClick={() => this.register()} color='teal' floated='right' type='submit'>Kayıt Ol</Button>
-          </Card.Content>
-          <Card.Content extra>
-            <a onClick={() => this.handleRoute('/login')}>Hesabın var mı ?</a>
-          </Card.Content>
-        </Card>
-      </div>
+      <Segment className='auth' raised color='teal'>
+        <Header as='h3' dividing color='teal' content='Kayıt Ol'/>
+        <Form>
+          <Form.Field control={Input} label='Kullanıcı Adı' value={this.state.username} onChange={this.updateUsername} placeholder='Kullanıcı Adı' />
+          <Form.Field control={Input} label='E-Posta' value={this.state.email} onChange={this.updateEmail} type='email' placeholder='E-Posta' />
+          <Form.Field control={Input} label='Şifre' value={this.state.password} onChange={this.updatePassword} type='password' placeholder='Şifre' />
+          <Form.Field control={Button} color='teal' fluid onClick={() => this.register()}>Kaydol</Form.Field>
+        </Form>
+        <Segment basic>
+          <a onClick={() => this.handleRoute('/login')}>Hesabın var mı ?</a>
+        </Segment>
+      </Segment>
     );
   }
 }

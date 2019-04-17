@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Input } from 'semantic-ui-react';
+import { Button, Input, Segment, Form, Header } from 'semantic-ui-react';
 import Noty from 'noty';
 
 export default class ForgotPassword extends Component {
@@ -27,34 +27,51 @@ export default class ForgotPassword extends Component {
   }
 
   handlePasswordReset(){
-    Accounts.forgotPassword({ email: this.state.mail });
-    new Noty({
-      type: 'success',
-      layout: 'topRight',
-      theme: 'sunset',
-      text: 'Doğrulama linki başarıyla yollandı, gelen kutunuzu kontrol edin.',
-      timeout: 1000,
-      progressBar: true,
-      closeWith: ['click', 'button'],
-      animation: {
-        open: 'noty_effects_open',
-        close: 'noty_effects_close'
-      }
-    }).show();
-    this.props.history.push('/login');
+    if(this.state.mail.toString().length !== 0){
+      Accounts.forgotPassword({ email: this.state.mail });
+      new Noty({
+        type: 'success',
+        layout: 'topRight',
+        theme: 'sunset',
+        text: 'Doğrulama linki yollandı, gelen kutunuzu kontrol edin.',
+        timeout: 1000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+        }
+      }).show();
+      this.props.history.push('/login');
+    } else {
+      new Noty({
+        type: 'warning',
+        layout: 'topRight',
+        theme: 'sunset',
+        text: 'Lütfen formu doldurun',
+        timeout: 1000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+        }
+      }).show();
+    }
   }
 
   render() {
     return (
-      <Card>
-        <Card.Content>
-          <Input fluid value={this.state.mail} onChange={this.updateMail} placeholder='E-Posta' /><br/>
-          <Button fluid onClick={() => this.handlePasswordReset()} color='teal' floated='right' type='submit'>Gönder</Button>
-        </Card.Content>
-        <Card.Content extra>
+      <Segment className='auth' raised color='teal'>
+        <Header as='h3' dividing color='teal' content='Şifre Hatırlatma'/>
+        <Form>
+          <Form.Field control={Input} fluid label='E-Posta' value={this.state.mail} onChange={this.updateMail} placeholder='E-Posta' />
+          <Form.Field control={Button} color='teal' fluid onClick={() => this.handlePasswordReset()}>Gönder</Form.Field>
+        </Form>
+        <Segment basic>
           <a onClick={() => this.handleRoute('/login')}>Hatırladın mı ?</a>
-        </Card.Content>
-      </Card>
+        </Segment>
+      </Segment>
     );
   }
 }
