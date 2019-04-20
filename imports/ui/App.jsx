@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router';
 var createHistory = require('history').createBrowserHistory;
 import 'semantic-ui-css/semantic.min.css';
+import { Grid } from 'semantic-ui-react';
 
 import { Games } from '../api/games.js';
+import { Messages } from '../api/messages.js';
 
 import Login from './Login.jsx';
 import Register from './Register.jsx';
@@ -21,6 +23,7 @@ import Leaderboard from './Leaderboard.jsx';
 import About from './publicPages/About.jsx';
 import Rules from './Rules.jsx';
 import Links from './Links.jsx';
+import ChatboxContainer from './Chatbox.jsx';
 import GameLobby from './gamePages/GameLobby.jsx';
 import NotFound from './NotFound.jsx';
 
@@ -28,7 +31,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     Meteor.userId() ? (
       <PublicRoute {...rest} component={matchProps => (
-        <Component {...matchProps} />
+        <Grid className='appContainer' stackable columns={2}>
+          <Grid.Column className='pageContainer' width={12}>
+            <Component {...matchProps} />
+          </Grid.Column>
+          <Grid.Column className='chatContainer' width={4}>
+            <ChatboxContainer />
+          </Grid.Column>
+        </Grid>
       )} />
     ) : (
       <Redirect to={{

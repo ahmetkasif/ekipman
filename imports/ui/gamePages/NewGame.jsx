@@ -61,29 +61,49 @@ export default class NewGame extends Component {
   }
 
   newGame(){
-    Meteor.call(
-      'newGame',
-      this.state.name,
-      this.state.description,
-      this.state.rules,
-      this.state.startDate,
-      false,
-      this.state.type
-    );
-    new Noty({
-      type: 'information',
-      layout: 'topRight',
-      theme: 'sunset',
-      text: 'Yeni oyun oluşturuldu',
-      timeout: 1000,
-      progressBar: true,
-      closeWith: ['click', 'button'],
-      animation: {
-        open: 'noty_effects_open',
-        close: 'noty_effects_close'
-      }
-    }).show();
-    this.props.history.push('/games');
+    if(this.state.name.toString().length !== 0 &&
+    this.state.description.toString().length !== 0 &&
+    this.state.rules.toString().length !== 0 &&
+    this.state.startDate.toString().length !== 0 &&
+    this.state.type.toString().length !== 0){
+      Meteor.call(
+        'newGame',
+        this.state.name,
+        this.state.description,
+        this.state.rules,
+        this.state.startDate,
+        false,
+        this.state.type
+      );
+      new Noty({
+        type: 'information',
+        layout: 'topRight',
+        theme: 'sunset',
+        text: 'Yeni oyun oluşturuldu',
+        timeout: 1000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+        }
+      }).show();
+      this.props.history.push('/games');
+    } else {
+      new Noty({
+        type: 'warning',
+        layout: 'topRight',
+        theme: 'sunset',
+        text: 'Lütfen formu doldurunuz',
+        timeout: 1000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+        }
+      }).show();
+    }
   }
 
   render() {

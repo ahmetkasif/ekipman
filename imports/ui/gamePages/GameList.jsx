@@ -28,19 +28,23 @@ class GameList extends Component {
   renderState(state){
     if(state == 0){
       return(
-        <p>Durum: Kayıtlar devam ediyor</p>
+        'Durum: Kayıtlar devam ediyor'
       );
     } else if(state == 1){
       return(
-        <p>Durum: Kayıtlar kapandı. Oyun devam ediyor.</p>
+        'Durum: Kayıtlar kapandı. Ülkeler dağıtılıyor'
       );
     } else if(state == 2){
       return(
-        <p>Durum: Oyun tamamlandı.</p>
+        'Durum: Oyun devam ediyor'
+      );
+    } else if(state == 3){
+      return(
+        'Durum: Oyun tamamlandı'
       );
     } else {
       return(
-        <p>Durum: Bilinmiyor.</p>
+        'Durum: Bilinmiyor.'
       );
     }
   }

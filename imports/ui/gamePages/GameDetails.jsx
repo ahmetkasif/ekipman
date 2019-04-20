@@ -9,39 +9,15 @@ class GameDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Ottomans',
-      joinVis: true
+      value: 'Ottomans'
     };
     
     this.renderState = this.renderState.bind(this);
     this.renderPlayers = this.renderPlayers.bind(this);
     this.renderJoinGame = this.renderJoinGame.bind(this);
     this.renderHostActions = this.renderHostActions.bind(this);
+    this.assignCountries = this.assignCountries.bind(this);
   }
-
-  componentDidMount(){
-    if(this.props.game){
-      if(this.props.game.state == 0){
-        this.setState({
-          joinVis: false
-        });
-      }
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.game !== prevProps.game) {
-      if(this.props.game.state == 0){
-        this.setState({
-          joinVis: false
-        });
-      } else{
-        this.setState({
-          joinVis: true
-        });
-      } 
-    }
-   }
 
   handleChange(event, data){
     this.setState({
@@ -68,10 +44,6 @@ class GameDetails extends Component {
   }
 
   changeState(newState){
-    this.setState({
-      joinVis: true
-    });
-
     Meteor.call(
       'changeState',
       this.props.game._id,
@@ -79,12 +51,46 @@ class GameDetails extends Component {
     );
   }
 
+  assignCountries(){
+    var countries = this.props.game.countries;
+
+    var players = this.props.game.players;
+    players.forEach(player => {
+      console.log(player);
+    });
+    const npl = players.sort((a, b) => function(){
+      if(a.name > b.name){
+        return 1;
+      }
+      return -1;
+    });
+
+    npl.forEach(player => {
+      console.log(player);
+    });
+
+    countries.forEach(country => {
+      players.forEach(player => {
+        if(player.option1 == country.value){
+          player.country = country.value;
+        } else if(player.option2 == country.value){
+          player.country = country.value;
+        } else if(player.option3 == country.value){
+          player.country = country.value;
+        }
+      });
+    });
+
+    //this.changeState(2);
+  }
+
   renderHostActions(){
     if(this.props.game.hostID === Meteor.userId()){
       return(
         <Dropdown color='olive' button text='Seçenekler'>
           <Dropdown.Menu>
-            <Dropdown.Item text='Alımları Kapat' color='teal' disabled={this.state.joinVis} onClick={() => this.changeState(1)}/>
+            <Dropdown.Item text='Alımları Kapat' color='teal' disabled={this.props.game.state == 0 ? false : true} onClick={() => this.changeState(1)}/>
+            <Dropdown.Item text='Ülkeleri Dağıt' color='teal' disabled={this.props.game.state == 1 ? false : true} onClick={() => this.assignCountries()}/>
             <Dropdown.Item text='Düzenle' onClick={() => this.props.history.push('/updateGame/' + this.props.game._id, {id: this.props.game._id})}/>
             <Dropdown.Item text='Sil' onClick={() => this.props.history.push('/deleteGame/' + this.props.game._id, {id: this.props.game._id})}/>
           </Dropdown.Menu>
@@ -134,11 +140,15 @@ class GameDetails extends Component {
       );
     } else if(this.props.game.state == 1){
       return(
-        'Durum: Kayıtlar kapandı. Oyun devam ediyor.'
+        'Durum: Kayıtlar kapandı. Ülkeler dağıtılıyor'
       );
     } else if(this.props.game.state == 2){
       return(
-        'Durum: Oyun tamamlandı.'
+        'Durum: Oyun devam ediyor'
+      );
+    } else if(this.props.game.state == 3){
+      return(
+        'Durum: Oyun tamamlandı'
       );
     } else {
       return(

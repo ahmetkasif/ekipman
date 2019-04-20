@@ -12,28 +12,26 @@ html, body, #react-root, #render-target {
 	width: 100%!important;
 }
 
-.generated{
-	background-image: linear-gradient(92deg, #ff2929, #ffffff);
-	animation: hue 15s infinite linear;
-	display: flex!important;
-	margin: auto;
-}
-
-@keyframes hue {
-	from {
-		filter: hue-rotate(0deg);
+.appContainer{
+	.chatContainer{
+		.chatBox{
+			margin-right: 1em!important;
+		}
 	}
 
-	to {
-		filter: hue-rotate(-360deg);
+	.pageContainer{
+		.page{
+			margin-left: 1em!important;
+		}
+
+		.profile{
+			margin-left: 1em!important;
+		}
 	}
 }
-
-
 
 .page{
-	width: 90% !important;
-	margin-left: 5% !important;
+	width: 96% !important;
 	background-color: snow!important;
 	
 	.header {
@@ -56,8 +54,7 @@ html, body, #react-root, #render-target {
 }
 
 .profile{
-	width: 90% !important;
-	margin-left: 5% !important;
+	width: 96% !important;
 	background-color: snow!important;
 	
 	.header {
@@ -80,7 +77,6 @@ html, body, #react-root, #render-target {
 	}
 }
 
-/******************** AUTH *********************/
 .auth{
 	width: 50%!important;
 	margin: 4em auto!important;
@@ -94,4 +90,21 @@ html, body, #react-root, #render-target {
 			margin: 0.25em 0;
 		}
 	} 
+}
+
+.generated{
+	background-image: linear-gradient(92deg, #ff2929, #ffffff);
+	animation: hue 15s infinite linear;
+	display: flex!important;
+	margin: auto;
+}
+
+@keyframes hue {
+	from {
+		filter: hue-rotate(0deg);
+	}
+
+	to {
+		filter: hue-rotate(-360deg);
+	}
 }

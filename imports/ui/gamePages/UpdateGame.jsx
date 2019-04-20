@@ -19,7 +19,8 @@ class UpdateGame extends Component {
       name: '',
       description: '',
       rules: '',
-      startDate: ''
+      startDate: '',
+      type: ''
     };
 
     this.updateName = this.updateName.bind(this);
@@ -36,7 +37,8 @@ class UpdateGame extends Component {
         name: this.props.game.name,
         description: this.props.game.description,
         rules: this.props.game.rules,
-        startDate: this.props.game.startDate
+        startDate: this.props.game.startDate,
+        type: this.props.game.type
       });
     }
   }
@@ -47,7 +49,8 @@ class UpdateGame extends Component {
         name: this.props.game.name,
         description: this.props.game.description,
         rules: this.props.game.rules,
-        startDate: this.props.game.startDate
+        startDate: this.props.game.startDate,
+        type: this.props.game.type
       });
     }
    }
