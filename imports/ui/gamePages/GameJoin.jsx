@@ -92,7 +92,7 @@ class GameJoin extends Component {
           type: 'warning',
           layout: 'topRight',
           theme: 'sunset',
-          text: 'Devam etmeden önce kuralları kabul etmelisin.',
+          text: 'Devam etmeden önce kuralları kabul etmelisin',
           timeout: 1000,
           progressBar: true,
           closeWith: ['click', 'button'],

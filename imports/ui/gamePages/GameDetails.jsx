@@ -163,7 +163,7 @@ class GameDetails extends Component {
         <List.Item key={player.id}>
           <Image avatar src={gravatar.url(player.email)} />
           <List.Content>
-            <b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a>{Meteor.userId() == this.props.game.hostID ? ' Tercihleri :' + player.option1 + ', ' + player.option2 + ', ' + player.option3 : ''}</b>
+            <b><a onClick={() => this.props.history.push('/profile/' + player.name, {username: player.name})}>{player.name}</a>{Meteor.userId() == this.props.game.hostID ? ' Tercihleri: ' + player.option1 + ', ' + player.option2 + ', ' + player.option3 : ''}</b>
           </List.Content>
         </List.Item>
       ));

@@ -23,7 +23,8 @@ import Leaderboard from './Leaderboard.jsx';
 import About from './publicPages/About.jsx';
 import Rules from './Rules.jsx';
 import Links from './Links.jsx';
-import ChatboxContainer from './Chatbox.jsx';
+import Advertorial from './Advertorial.jsx';
+import ChatBoxContainer from './Chatbox.jsx';
 import GameLobby from './gamePages/GameLobby.jsx';
 import NotFound from './NotFound.jsx';
 
@@ -35,8 +36,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
           <Grid.Column className='pageContainer' width={12}>
             <Component {...matchProps} />
           </Grid.Column>
-          <Grid.Column className='chatContainer' width={4}>
-            <ChatboxContainer />
+          <Grid.Column className='advertorialContainer' width={4}>
+            <Advertorial />
           </Grid.Column>
         </Grid>
       )} />
@@ -78,12 +79,12 @@ export default class App extends Component {
           <PrivateRoute path="/rules" exact component={Rules}/>
           <PrivateRoute path="/links" exact component={Links}/>
           <PrivateRoute path="/settings" exact component={Settings}/>
+          <PrivateRoute path="/lobby" exact component={ChatBoxContainer}/>
+          <PrivateRoute path="/leaderboard" exact component={Leaderboard}/>
           <PublicRoute path="/" exact component={Home}/>
           <PublicRoute path="/login" exact component={Login}/>
           <PublicRoute path="/register" exact component={Register}/>
           <PublicRoute path="/forgotPassword" exact component={ForgotPassword}/>
-          <PublicRoute path="/leaderboard" exact component={Leaderboard}/>
-          <PublicRoute path="/about" exact component={About}/>
           <PublicRoute component={NotFound} />
         </Switch>
       </Router>

@@ -54,6 +54,14 @@ export default class Nav extends Component {
               Oyunlar
           </Menu.Item>
         : ""}
+        {Meteor.userId() ?
+          <Menu.Item
+            name='Oyunlar'
+            active={this.state.activeItem === 'lobby'}
+            onClick={() => this.handleRoute('/lobby', 'lobby')}>
+              Lobi
+          </Menu.Item>
+        : ""}
         <Menu.Item
           name='Lider Tablosu'
           active={this.state.activeItem === 'leaderboard'}
