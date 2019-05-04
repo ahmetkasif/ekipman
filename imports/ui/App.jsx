@@ -20,7 +20,6 @@ import UpdateGameContainer from './gamePages/UpdateGame.jsx';
 import GameJoinContainer from './gamePages/GameJoin.jsx';
 import Settings from './Settings.jsx';
 import Leaderboard from './Leaderboard.jsx';
-import About from './publicPages/About.jsx';
 import Rules from './Rules.jsx';
 import Links from './Links.jsx';
 import Advertorial from './Advertorial.jsx';
@@ -76,11 +75,11 @@ export default class App extends Component {
           <PrivateRoute path="/joinGame/:gameId?" exact component={GameJoinContainer}/>
           <PrivateRoute path="/updateGame/:gameId?" exact component={UpdateGameContainer}/>
           <PrivateRoute path="/profile/:username?" exact component={ProfileContainer}/>
-          <PrivateRoute path="/rules" exact component={Rules}/>
-          <PrivateRoute path="/links" exact component={Links}/>
           <PrivateRoute path="/settings" exact component={Settings}/>
           <PrivateRoute path="/lobby" exact component={ChatBoxContainer}/>
-          <PrivateRoute path="/leaderboard" exact component={Leaderboard}/>
+          <PublicRoute path="/rules" exact component={Rules}/>
+          <PublicRoute path="/leaderboard" exact component={Leaderboard}/>
+          <PublicRoute path="/links" exact component={Links}/>
           <PublicRoute path="/" exact component={Home}/>
           <PublicRoute path="/login" exact component={Login}/>
           <PublicRoute path="/register" exact component={Register}/>

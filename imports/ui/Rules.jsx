@@ -59,6 +59,21 @@ const panes = [
       <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
       Hazırlanıyor..
     </Container>
+    }, { menuItem: 'CK2', render: () =>
+    <Container textAlign='justified' color='teal'>
+      <p>Türkiye Strateji Oyuncuları Topluluğu Crusader Kings 2 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
+      <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
+        <p>Oyun 769 yılında başlar</p>
+        <p>Yalnızca Count ve Duke countryler seçilebilir.(Öncelik Europe ve Tribal)</p>
+        <p>Shia olmayanlar Assassins tarikatına katılamazlar</p>
+        <p>Kendi bölgesi dışında oyuncu ve ai plot atılması yasaktır.(Rival olunması durumunda söz konusu kural geçersizdir.)</p>
+        <p>Aynı statüye sahip dynastyler birbirleriyle ally olabilir.(duke-duke king-king vs)</p>
+        <p>Oyuncu savaşları claim usulüyle açılabilir. Diğer casus bellyler crusade dönemine dek yasaktır.(900 civarları)</p>
+        <p>Surrender üzerine 6 ay içerisinde barış yapılmalıdır</p>
+        <p>Gizli societylerde bulunan master ve üyeler rival olmadan veya aynı liege'de bulunmadan birbirleriyle etkileşime giremezler</p>
+        <p>Başka oyuncunun oyununu sonlandıracak şekilde ( hanedanı yok edecek şekilde) hareket edilmemelidir. Bunun dışında her türlü peşkeş entrika uygundur</p>
+        <p>Oyuncunun ai çocuğuyla ilişkiye girmek yasaktır. Oyuncuyla rival olunursa girilbilir.(istisna)</p>
+    </Container>
     }
 ]
 

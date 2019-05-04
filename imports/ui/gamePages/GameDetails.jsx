@@ -51,6 +51,14 @@ class GameDetails extends Component {
     );
   }
 
+  deleteGame(){
+    Meteor.call(
+      'deleteGame',
+      this.props.game._id  
+    );
+    this.props.history.push('/games');
+  }
+
   assignCountries(){
     var countries = this.props.game.countries;
 
@@ -92,7 +100,7 @@ class GameDetails extends Component {
             <Dropdown.Item text='Alımları Kapat' color='teal' disabled={this.props.game.state == 0 ? false : true} onClick={() => this.changeState(1)}/>
             <Dropdown.Item text='Ülkeleri Dağıt' color='teal' disabled={this.props.game.state == 1 ? false : true} onClick={() => this.assignCountries()}/>
             <Dropdown.Item text='Düzenle' onClick={() => this.props.history.push('/updateGame/' + this.props.game._id, {id: this.props.game._id})}/>
-            <Dropdown.Item text='Sil' onClick={() => this.props.history.push('/deleteGame/' + this.props.game._id, {id: this.props.game._id})}/>
+            <Dropdown.Item text='Sil' onClick={() => this.deleteGame()}/>
           </Dropdown.Menu>
         </Dropdown>
       );

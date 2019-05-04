@@ -29,7 +29,7 @@ export default class Nav extends Component {
     if (targetRoute !== this.props.location.pathname) {
       this.props.history.push(targetRoute);
       this.setState({
-        activeItem: name 
+        activeItem: name
       });
     }
   }
@@ -68,22 +68,18 @@ export default class Nav extends Component {
           onClick={() => this.handleRoute('/leaderboard', 'leaderboard')}>
             Liderler Tablosu
         </Menu.Item>
-        {Meteor.userId() ?
-          <Menu.Item
+        <Menu.Item
             name='Kurallar'
             active={this.state.activeItem === 'rules'}
             onClick={() => this.handleRoute('/rules', 'rules')}>
               Oyun Kuralları
-          </Menu.Item>:
-        ''}
-        {Meteor.userId() ?
-          <Menu.Item
-            name='DLC-Mod Linkleri'
-            active={this.state.activeItem === 'links'}
-            onClick={() => this.handleRoute('/links', 'links')}>
-              S.S.S
-          </Menu.Item>:
-        ''}
+        </Menu.Item>
+        <Menu.Item
+          name='sss'
+          active={this.state.activeItem === 'links'}
+          onClick={() => this.handleRoute('/links', 'links')}>
+            S.S.S
+        </Menu.Item>
         {Meteor.userId() ?
           <Menu.Menu position='right'>
             <Dropdown item text='Seçenekler'>
