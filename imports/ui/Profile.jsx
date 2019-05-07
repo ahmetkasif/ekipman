@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Image, Header, Dimmer, Loader, Segment, Container } from 'semantic-ui-react';
+import { Image, Header, Dimmer, Loader, Segment, Container, Button } from 'semantic-ui-react';
 
 var gravatar = require('gravatar');
 
@@ -14,7 +14,7 @@ class Profile extends Component {
   renderProfile(){
     if(this.props.user){
       return(
-        <Segment className='profile' raised color='teal'>
+        <Segment className='page' raised color='teal'>
           <Header as='h4' dividing color='teal' image>
             <Image avatar src={gravatar.url(this.props.user.emails[0].address)} />
             <Header.Content>

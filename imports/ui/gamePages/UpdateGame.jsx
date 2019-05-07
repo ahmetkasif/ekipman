@@ -7,8 +7,7 @@ const options = [
   { key: 'eu4', text: 'Europa Universalis 4', value: 'eu4' },
   { key: 'civ6', text: 'Civilization 6', value: 'civ6' },
   { key: 'hoi4', text: 'Hearts of Iron 4', value: 'hoi4' },
-  { key: 'ck2', text: 'Hearts of Iron 4', value: 'ck2' },
-  { key: 'coh2', text: 'Company of Heroes 2', value: 'coh2' }
+  { key: 'ck2', text: 'Crusader Kings 2', value: 'ck2' },
 ]
 
 class UpdateGame extends Component {
@@ -141,7 +140,7 @@ class UpdateGame extends Component {
 
 export default UpdateGameContainer = withTracker(props => {
   Tracker.autorun(() => {
-    Meteor.subscribe('games');
+    Meteor.subscribe('game', props.match.params.gameId);
   });
 
   const game = Games.findOne({_id: props.match.params.gameId});

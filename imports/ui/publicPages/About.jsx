@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Image, Segment, Divider, Header } from 'semantic-ui-react';
+import { List, Image, Segment, Divider, Header, Grid, Button } from 'semantic-ui-react';
 
 export default class About extends Component {
   constructor(props) {
@@ -13,14 +13,16 @@ export default class About extends Component {
         Türk Strateji Oyuncuları Topluluğu (TSOT) resmi web uygulamasıdır.
         <Divider/>
         <Image className="generated" size='medium' src='/images/logo.png' />
+        {!Meteor.userId() ? <Button size='huge' color='teal' onClick={() => this.handleRoute('/login')} className="homeSignButton" >Giriş Yap</Button> : null}
         <Divider />
         <List bulleted size={'large'}>
           <List.Item>Uygulama içi özelliklere, kayıt olarak ulaşılabilmektedir</List.Item>
+          <List.Item>Kullanıcı profil fotoğrafları gravatar üzerinden çekilmektedir. <a href="https://en.gravatar.com/">en.gravatar.com</a> adresine bir profil fotoğrafı yükleyerek uygulamadaki profil fotoğrafınızı güncel tutabilirsiniz.</List.Item>
           <List.Item>
             İşlevsel olarak eklenmesi tamamlanmış özellikler
             <List.List>
               <List.Item>Mevcut oyunları listeleyebilme</List.Item>
-              <List.Item>Oyun ekleyebilme</List.Item>
+              <List.Item>Oyun ekleyebilme, silme</List.Item>
               <List.Item>Oyun bilgilerini güncelleyebilme</List.Item>
               <List.Item>Oyun detaylarını görüntüleyebilme</List.Item>
               <List.Item>Kullanıcı şifresini güncelleyebilme</List.Item>

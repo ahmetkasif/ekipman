@@ -61,11 +61,11 @@ class GameList extends Component {
         );
       case 'civ6':
         return(
-          <Item.Image size='small' src='/images/civ6logo.png' />
+          <Item.Image size='small' src='/images/defaultgamelogo.png' />
         );
       case 'ck2':
         return(
-          <Item.Image size='small' src='/images/ck2logo.png' />
+          <Item.Image size='small' src='/images/defaultgamelogo.png' />
         );
       default:
         return(
