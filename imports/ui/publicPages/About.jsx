@@ -4,6 +4,17 @@ import { List, Image, Segment, Divider, Header, Grid, Button } from 'semantic-ui
 export default class About extends Component {
   constructor(props) {
     super(props);
+
+    this.handleRoute = this.handleRoute.bind(this);
+  }
+
+  handleRoute(targetRoute, name){
+    if (targetRoute !== this.props.location.pathname) {
+      this.props.history.push(targetRoute);
+      this.setState({
+        activeItem: name
+      });
+    }
   }
 
   render() {
