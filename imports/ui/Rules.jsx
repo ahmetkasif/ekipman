@@ -4,7 +4,7 @@ import { Tab, Card, Segment, Header, Container } from 'semantic-ui-react';
 const panes = [
     { menuItem: 'EU4 Tarihi', render: () =>
     <Container textAlign='justified' color='teal'>
-      <p>Türkiye Strateji Oyuncuları Topluluğu Europa Universalis 4 Tarihi oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
+      <p>Ekipman Europa Universalis 4 Tarihi oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
       <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
       <p>İlk <b>3</b> idea'da Military, Administrative ve Diplomatic idea alınmalıdır.</p>
       <p>İlk <b>1</b> ay oyunculara karşı agresif hareket yapılamaz.</p>
@@ -35,7 +35,7 @@ const panes = [
     </Container>
     }, { menuItem: 'EU4 Özel', render: () =>
     <Container textAlign='justified' color='teal'>
-      <p>Türkiye Strateji Oyuncuları Topluluğu Europa Universalis 4 Özel oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
+      <p>Ekipman Europa Universalis 4 Özel oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
       <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
       <p>Oyuncular arası diplomatik ilişkilerin tamamı yasaktır.</p>
       <p>1550 yılına kadar bir adet ai ally alınabilir. Bu müttefik de saldırı savaşlarına çağırılamaz</p>
@@ -49,19 +49,19 @@ const panes = [
     </Container>
     }, { menuItem: 'HOI4', render: () =>
     <Container textAlign='justified' color='teal'>
-      <p>Türkiye Strateji Oyuncuları Topluluğu Hearts of Iron 4 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
+      <p>Ekipman Hearts of Iron 4 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
       <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
       Hazırlanıyor..
     </Container>
     }, { menuItem: 'CIV6', render: () =>
     <Container textAlign='justified' color='teal'>
-      <p>Türkiye Strateji Oyuncuları Topluluğu Civilization 6 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
+      <p>Ekipman Civilization 6 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
       <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
       Hazırlanıyor..
     </Container>
     }, { menuItem: 'CK2', render: () =>
     <Container textAlign='justified' color='teal'>
-      <p>Türkiye Strateji Oyuncuları Topluluğu Crusader Kings 2 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
+      <p>Ekipman Crusader Kings 2 oyun kurallarıdır. Ülke başvurularının alınması, ülkelerin dağıtılması, oyun süresince aşağıda belirtilen kuralların uygulanması, kazananların ilanı ve yaptırım uygulama yetki ve sorumlulukları <b>Oyun Yöneticisi(GM)</b>'ndedir.</p>
       <Header as='h3' dividing color='olive' content='Genel Kurallar'/>
         <p>Oyun 769 yılında başlar</p>
         <p>Yalnızca Count ve Duke countryler seçilebilir.(Öncelik Europe ve Tribal)</p>

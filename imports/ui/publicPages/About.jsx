@@ -9,6 +9,8 @@ export default class About extends Component {
   }
 
   handleRoute(targetRoute, name){
+    console.log(this.props);
+    
     if (targetRoute !== this.props.location.pathname) {
       this.props.history.push(targetRoute);
       this.setState({
@@ -21,10 +23,9 @@ export default class About extends Component {
     return (
       <Segment className='page' raised color='teal'>
         <Header as='h3' dividing color='teal' content='Hakkında'/>
-        Türk Strateji Oyuncuları Topluluğu (TSOT) resmi web uygulamasıdır.
+        Ekipman oyuncu topluluğu resmi web uygulamasıdır.
         <Divider/>
         <Image className="generated" size='medium' src='/images/logo.png' />
-        {!Meteor.userId() ? <Button size='huge' color='teal' onClick={() => this.handleRoute('/login')} className="homeSignButton" >Giriş Yap</Button> : null}
         <Divider />
         <List bulleted size={'large'}>
           <List.Item>Uygulama içi özelliklere, kayıt olarak ulaşılabilmektedir</List.Item>
@@ -53,9 +54,9 @@ export default class About extends Component {
           </List.Item>
         </List>
         <Divider />
-        Sorularınız, görüşleriniz ve hata bildirimi için, <b>noreply@tsotapp.com</b> adresine e-posta ile ulaşabilirsiniz.
+        Sorularınız, görüşleriniz ve hata bildirimi için, <b>ekipman@gmail.com</b> adresine e-posta ile ulaşabilirsiniz.
         <Divider />
-        <b>UYGULAMA GELİŞTİRME AŞAMASINDADIR. ÇOĞU ÖZELLİK, HENÜZ TASARIM AŞAMASINDADIR. GELİŞİM SÜRECİNİ HAKKINDA SAYFASINDAN TAKİP EDEBİLİRSİNiZ.</b>
+        <b>UYGULAMA GELİŞTİRME AŞAMASINDADIR. GELİŞİM SÜRECİNİ HAKKINDA SAYFASINDAN TAKİP EDEBİLİRSİNiZ.</b>
       </Segment>
     );
   }

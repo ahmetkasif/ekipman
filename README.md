@@ -1,2 +1,2 @@
-# tsot
-TSOT Mobile &amp; Web App
+# ekipman
+Ekipman Topluluğu &amp; Web Uygulaması Kaynak Kodları

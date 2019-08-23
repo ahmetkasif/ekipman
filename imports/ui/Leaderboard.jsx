@@ -28,7 +28,7 @@ const panes = [
         <Header as='h4' image>
           <Image src='https://react.semantic-ui.com/images/avatar/small/matthew.png' rounded size='mini' />
           <Header.Content>
-            Lygrim
+            Devlet
           </Header.Content>
         </Header>
       </Table.Cell>
@@ -75,7 +75,7 @@ const panes = [
         <Header as='h4' image>
           <Image src='https://react.semantic-ui.com/images/avatar/small/lena.png' rounded size='mini' />
           <Header.Content>
-            Lygrim
+            Kirpi
           </Header.Content>
         </Header>
       </Table.Cell>
@@ -111,7 +111,7 @@ const panes = [
         <Header as='h4' image>
           <Image src='https://react.semantic-ui.com/images/avatar/small/mark.png' rounded size='mini' />
           <Header.Content>
-            Naked
+            Steafun
           </Header.Content>
         </Header>
       </Table.Cell>
@@ -170,7 +170,7 @@ const panes = [
         <Header as='h4' image>
           <Image src='https://react.semantic-ui.com/images/avatar/small/mark.png' rounded size='mini' />
           <Header.Content>
-            Guderian
+            Steafun
           </Header.Content>
         </Header>
       </Table.Cell>
